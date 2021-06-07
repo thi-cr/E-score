@@ -29,7 +29,7 @@ class Joueur
         $this->pseudo = $pseudo;
         $this->email = $email;
         $this->password = $password;
-        $this->equipes = $teams;
+        $this->equipes = $equipes;
     }
 
     public function __get($prop)
