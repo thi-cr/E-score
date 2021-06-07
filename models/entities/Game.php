@@ -1,33 +1,22 @@
 <?php
 
 
-class Player
+class Game
 {
     private $id;
     private $nom;
-    private $prenom;
-    private $pseudo;
-    private $email;
-    private $password;
     private $teams;
 
     /**
-     * Player constructor.
+     * Game constructor.
      * @param $id
      * @param $nom
-     * @param $prenom
-     * @param $pseudo
-     * @param $email
-     * @param $password
+     * @param $teams
      */
-    public function __construct($id, $nom, $prenom, $pseudo, $email, $password, $teams = null)
+    public function __construct($id, $nom, $teams = null)
     {
         $this->id = $id;
         $this->nom = $nom;
-        $this->prenom = $prenom;
-        $this->pseudo = $pseudo;
-        $this->email = $email;
-        $this->password = $password;
         $this->teams = $teams;
     }
 
@@ -44,6 +33,4 @@ class Player
             $this->$prop = $value;
         }
     }
-
-
 }
