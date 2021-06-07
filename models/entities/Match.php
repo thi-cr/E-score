@@ -1,12 +1,13 @@
 <?php
 
 
-class Match
+class Match extends AbstractDAO
 {
     private $id;
     private $ScoreEquipe1;
     private $ScoreEquipe2;
     private $jeu;
+    private $statut;
 
     /**
      * Match constructor.
@@ -15,12 +16,13 @@ class Match
      * @param $ScoreEquipe2
      * @param $jeu
      */
-    public function __construct($id, $ScoreEquipe1, $ScoreEquipe2, $jeu)
+    public function __construct($id, $ScoreEquipe1, $ScoreEquipe2, $jeu, $statut)
     {
         $this->id = $id;
         $this->ScoreEquipe1 = $ScoreEquipe1;
         $this->ScoreEquipe2 = $ScoreEquipe2;
         $this->jeu = $jeu;
+        $this->statut = $statut;
     }
 
     public function __get($prop)

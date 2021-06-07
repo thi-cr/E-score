@@ -1,7 +1,7 @@
 <?php
 
 
-class Equipe
+class Equipe extends AbstractDAO
 {
     private $id;
     private $nom;
@@ -21,7 +21,7 @@ class Equipe
      * @param $jeux
      * @param $matchs
      */
-    public function __construct($id, $nom, $tag, $idCapitaine, $joueurs = null, $jeux = null, $matchs = null)
+    public function __construct($id, $nom, $tag, $idCapitaine, $joueurs = false, $jeux = false, $matchs = false)
     {
         $this->id = $id;
         $this->nom = $nom;

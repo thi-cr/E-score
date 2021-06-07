@@ -19,9 +19,9 @@ class Joueur
      * @param $pseudo
      * @param $email
      * @param $password
-     * @param $teams
+     * @param $equipes
      */
-    public function __construct($id, $nom, $prenom, $pseudo, $email, $password, $equipes = null)
+    public function __construct($id, $nom, $prenom, $pseudo, $email, $password, $equipes = false)
     {
         $this->id = $id;
         $this->nom = $nom;
