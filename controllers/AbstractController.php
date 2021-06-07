@@ -41,4 +41,9 @@ abstract class AbstractController
     {
         var_dump('no add');
     }
+
+    public function login()
+    {
+        var_dump('no login');
+    }
 }

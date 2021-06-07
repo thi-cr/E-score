@@ -14,8 +14,8 @@ class Router
     {
         $this->get = $_GET;
         $this->post = $_POST;
-        $this->actions = ['create', 'edit', 'delete', 'show', 'update', 'store', 'index', 'add'];
-        $this->controllers = [];
+        $this->actions = ['create', 'edit', 'delete', 'show', 'update', 'store', 'index', 'add', 'login'];
+        $this->controllers = ['index' => 'JoueurController', 'joueurs' => 'JoueurController', 'equipes' => 'EquipeController'];
         $this->request = array();
         $this->data = $this->parseURI($_SERVER['REQUEST_URI']);
         $this->dispatch();

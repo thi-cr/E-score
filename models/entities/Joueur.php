@@ -12,7 +12,7 @@ class Joueur
     private $equipes;
 
     /**
-     * Joueur constructor.
+     * joueur constructor.
      * @param $id
      * @param $nom
      * @param $prenom

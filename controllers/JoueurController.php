@@ -9,10 +9,9 @@ class JoueurController extends AbstractController
 
     public function index()
     {
-        $personnes = $this->dao->fetchAll();
-
-        //include('../views/head.php');
-        include('../views/personnes/list.php');
-        //include('../views/foot.php');
+        include('../views/head.php');
+        include('../views/joueur/login/loginForm.php');
+        include('../views/foot.php');
     }
+
 }
