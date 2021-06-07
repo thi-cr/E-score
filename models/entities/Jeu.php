@@ -1,23 +1,23 @@
 <?php
 
 
-class Game
+class Jeu
 {
     private $id;
     private $nom;
-    private $teams;
+    private $equipes;
 
     /**
-     * Game constructor.
+     * Jeu constructor.
      * @param $id
      * @param $nom
-     * @param $teams
+     * @param $equipes
      */
-    public function __construct($id, $nom, $teams = null)
+    public function __construct($id, $nom, $equipes = null)
     {
         $this->id = $id;
         $this->nom = $nom;
-        $this->teams = $teams;
+        $this->equipes = $equipes;
     }
 
     public function __get($prop)

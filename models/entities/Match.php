@@ -4,23 +4,23 @@
 class Match
 {
     private $id;
-    private $ScoreTeam1;
-    private $ScoreTeam2;
-    private $game;
+    private $ScoreEquipe1;
+    private $ScoreEquipe2;
+    private $jeu;
 
     /**
      * Match constructor.
      * @param $id
-     * @param $ScoreTeam1
-     * @param $ScoreTeam2
-     * @param $game
+     * @param $ScoreEquipe1
+     * @param $ScoreEquipe2
+     * @param $jeu
      */
-    public function __construct($id, $ScoreTeam1, $ScoreTeam2, $game)
+    public function __construct($id, $ScoreEquipe1, $ScoreEquipe2, $jeu)
     {
         $this->id = $id;
-        $this->ScoreTeam1 = $ScoreTeam1;
-        $this->ScoreTeam2 = $ScoreTeam2;
-        $this->game = $game;
+        $this->ScoreEquipe1 = $ScoreEquipe1;
+        $this->ScoreEquipe2 = $ScoreEquipe2;
+        $this->jeu = $jeu;
     }
 
     public function __get($prop)

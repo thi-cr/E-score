@@ -1,7 +1,7 @@
 <?php
 
 
-class Player
+class Joueur
 {
     private $id;
     private $nom;
@@ -9,18 +9,19 @@ class Player
     private $pseudo;
     private $email;
     private $password;
-    private $teams;
+    private $equipes;
 
     /**
-     * Player constructor.
+     * Joueur constructor.
      * @param $id
      * @param $nom
      * @param $prenom
      * @param $pseudo
      * @param $email
      * @param $password
+     * @param $teams
      */
-    public function __construct($id, $nom, $prenom, $pseudo, $email, $password, $teams = null)
+    public function __construct($id, $nom, $prenom, $pseudo, $email, $password, $equipes = null)
     {
         $this->id = $id;
         $this->nom = $nom;
@@ -28,7 +29,7 @@ class Player
         $this->pseudo = $pseudo;
         $this->email = $email;
         $this->password = $password;
-        $this->teams = $teams;
+        $this->equipes = $teams;
     }
 
     public function __get($prop)

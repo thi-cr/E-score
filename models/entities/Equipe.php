@@ -1,32 +1,37 @@
 <?php
 
 
-class Team
+class Equipe
 {
     private $id;
     private $nom;
     private $tag;
     private $idCapitaine;
     private $joueurs;
-    private $games;
+    private $jeux;
+    private $matchs;
 
     /**
-     * Team constructor.
+     * Equipe constructor.
      * @param $id
      * @param $nom
      * @param $tag
      * @param $idCapitaine
      * @param $joueurs
+     * @param $jeux
+     * @param $matchs
      */
-    public function __construct($id, $nom, $tag, $idCapitaine, $joueurs = null, $games = null)
+    public function __construct($id, $nom, $tag, $idCapitaine, $joueurs = null, $jeux = null, $matchs = null)
     {
         $this->id = $id;
         $this->nom = $nom;
         $this->tag = $tag;
         $this->idCapitaine = $idCapitaine;
         $this->joueurs = $joueurs;
-        $this->games = $games;
+        $this->jeux = $jeux;
+        $this->matchs = $matchs;
     }
+
 
     public function __get($prop)
     {
