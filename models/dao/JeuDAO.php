@@ -1,7 +1,7 @@
 <?php
 
 
-class JeuDAO
+class JeuDAO extends AbstractDAO
 {
 
 }
