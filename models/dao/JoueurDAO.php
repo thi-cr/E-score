@@ -11,7 +11,7 @@ class JoueurDAO extends AbstractDAO
 
     public function equipes($joueur_id)
     {
-        return $this->belongsToMany(new EquipeDAO(), 'joueur_equipe', $joueur_id, 'joueur_id', 'equipe_id');
+        return $this->belongsTo(new EquipeDAO(), $joueur_id);
     }
 
     public function create($result)
