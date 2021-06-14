@@ -16,7 +16,7 @@
                         <tbody>
                         <tr>
                             <?php foreach ($equipe->joueurs as $joueur): ?>
-                            <td><?= $joueur->pseudo ?></td>
+                                <td><?= $joueur->pseudo ?></td>
                             <?php endforeach; ?>
                         </tr>
                         </tbody>
