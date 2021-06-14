@@ -1,7 +1,7 @@
 <?php
 
 
-class Equipe extends AbstractDAO
+class Equipe
 {
     private $id;
     private $nom;
