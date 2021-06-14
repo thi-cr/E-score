@@ -16,33 +16,33 @@ class EquipeDAO extends AbstractDAO
 
     public function matchs($equipe_id)
     {
-        $un = $this->hasMany(new MatchDAO(), 'equipe_une_id', $equipe_id);
-        $deux = $this->hasMany(new MatchDAO(), 'equipe_deux_id', $equipe_id);
+        $un = $this->hasMany(new MatchDAO(), 'equipe1', $equipe_id);
+        $deux = $this->hasMany(new MatchDAO(), 'equipe2', $equipe_id);
         return array_merge_recursive($un, $deux);
     }
 
     public function jeux($equipe_id)
     {
-        return $this->hasMany(new JeuDAO(), 'equipe_id', $equipe_id);
+        return $this->belongsToMany(new JeuDAO(), 'equipe_jeu', $equipe_id, 'equipe_id', 'jeu_id');
     }
 
     public function associate_joueurs($id, $joueur_ids)
     {
         foreach ($joueur_ids as $joueur) {
-            $this->associate('joueur_equipe', $id, 'equipe_id', 'joueur_id', $joueur);
+            $this->associate('joueurs', $id, 'equipe_id', 'joueur_id', $joueur);
         }
     }
 
     public function dissociate_joueurs($id, $joueur_ids)
     {
         foreach ($joueur_ids as $joueur) {
-            $this->dissociate('joueur_equipe', $id, 'equipe_id', 'joueur_id', $joueur);
+            $this->dissociate('joueurs', $id, 'equipe_id', 'joueur_id', $joueur);
         }
     }
 
     public function remove_joueurs($id)
     {
-        $this->remove('joueur_equipe', $id, 'equipe_id');
+        $this->remove('joueurs', $id, 'equipe_id');
     }
 
     public function create($result)
@@ -51,7 +51,7 @@ class EquipeDAO extends AbstractDAO
             $result["id"],
             $result["nom"],
             $result["tag"],
-            $result["idCapitaine"]
+            $result["capitaine_id"]
         );
     }
 
@@ -61,7 +61,7 @@ class EquipeDAO extends AbstractDAO
             $result["id"],
             $result["nom"],
             $result["tag"],
-            $result["idCapitaine"],
+            $result["capitaine_id"],
             $this->joueurs($result["id"]),
             $this->jeux($result["id"]),
             $this->matchs($result["id"])
@@ -70,7 +70,7 @@ class EquipeDAO extends AbstractDAO
 
     function store($id, $data)
     {
-        if (empty($data['nom']) || empty($data['tag']) || empty($data['idCapitaine'])) {
+        if (empty($data['nom']) || empty($data['tag']) || empty($data['capitaine_id'])) {
             return false;
         }
         $EquipeDAO = new EquipeDAO();
@@ -80,18 +80,18 @@ class EquipeDAO extends AbstractDAO
                 'id' => 0,
                 'nom' => $data['nom'],
                 'tag' => $data['tag'],
-                'idCapitaine' => $data['idCapitaine']
+                'capitaine_id' => $data['capitaine_id']
             ]
         );
 
         try {
             $statement = $this->connection->prepare(
-                "INSERT INTO {$this->table} (nom, tag, idCapitaine) VALUES (?, ?, ?)"
+                "INSERT INTO {$this->table} (nom, tag, capitaine_id) VALUES (?, ?, ?)"
             );
             $statement->execute([
                 htmlspecialchars($data['nom']),
                 htmlspecialchars($data['tag']),
-                htmlspecialchars($data['idCapitaine'])
+                htmlspecialchars($data['capitaine_id'])
 
             ]);
             if (isset($data['joueurs'])) {
@@ -127,12 +127,12 @@ class EquipeDAO extends AbstractDAO
     public function update($id, $data)
     {
         try {
-            $statement = $this->connection->prepare("UPDATE {$this->table} SET nom = ?, tag = ?, idCapitaine = ? WHERE id = ?");
+            $statement = $this->connection->prepare("UPDATE {$this->table} SET nom = ?, tag = ?, capitaine_id = ? WHERE id = ?");
             $statement->execute(
                 [
                     htmlspecialchars($data['nom']),
                     htmlspecialchars($data['tag']),
-                    htmlspecialchars($data['idCapitaine']),
+                    htmlspecialchars($data['capitaine_id']),
                     htmlspecialchars($data['id']),
                 ]
             );

@@ -9,7 +9,7 @@ class JeuDAO extends AbstractDAO
         parent::__construct('jeux');
     }
 
-    public function equipes($jeu_id)
+    public function equipe($jeu_id)
     {
         return $this->belongsToMany(new EquipeDAO(), 'equipe_jeu', $jeu_id, 'jeu_id', 'equipe_id');
     }
@@ -28,7 +28,7 @@ class JeuDAO extends AbstractDAO
         return new Jeu(
             $result["id"],
             $result["nom"],
-            $this->equipes($result["id"])
+            $this->equipe($result["id"])
         );
     }
 }

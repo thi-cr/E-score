@@ -18,9 +18,9 @@ class MatchDAO extends AbstractDAO
             $result["equipe2"],
             $result["ScoreEquipe1"],
             $result["ScoreEquipe2"],
-            $result["jeu"],
+            $result["jeu_id"],
             $result["statut"],
-            $result["idCreateur"]
+            $result["createur_id"]
         );
     }
 
@@ -32,16 +32,16 @@ class MatchDAO extends AbstractDAO
             $result["equipe2"],
             $result["ScoreEquipe1"],
             $result["ScoreEquipe2"],
-            $result["jeu"],
+            $result["jeu_id"],
             $result["statut"],
-            $result["idCreateur"]
+            $result["createur_id"]
         );
     }
 
 
     function store($id, $data)
     {
-        if (empty($data['equipe1']) || empty($data['equipe2']) || empty($data['ScoreEquipe1']) || empty($data['ScoreEquipe2']) || empty($data['jeu']) || empty($data['statut']) || empty($data['idCreateur'])) {
+        if (empty($data['equipe1']) || empty($data['equipe2']) || empty($data['ScoreEquipe1']) || empty($data['ScoreEquipe2']) || empty($data['jeu']) || empty($data['statut']) || empty($data['createur_id'])) {
             return false;
         }
 
@@ -56,7 +56,7 @@ class MatchDAO extends AbstractDAO
                 htmlspecialchars($data['ScoreEquipe2']),
                 htmlspecialchars($data['jeu']),
                 htmlspecialchars($data['statut']),
-                htmlspecialchars($data['idCreateur']),
+                htmlspecialchars($data['createur_id']),
             ]);
             return true;
         } catch (PDOException $e) {
@@ -85,7 +85,7 @@ class MatchDAO extends AbstractDAO
     public function update($id, $data)
     {
         try {
-            $statement = $this->connection->prepare("UPDATE {$this->table} SET equipe1 = ?, equipe2 = ?, ScoreEquipe1 = ?, ScoreEquipe2 = ?, jeu = ?, statut, idCreateur = ? WHERE id = ?");
+            $statement = $this->connection->prepare("UPDATE {$this->table} SET equipe1 = ?, equipe2 = ?, ScoreEquipe1 = ?, ScoreEquipe2 = ?, jeu_id = ?, statut = ?, createur_id = ? WHERE id = ?");
             $statement->execute(
                 [
                     htmlspecialchars($data['equipe1']),
@@ -94,7 +94,7 @@ class MatchDAO extends AbstractDAO
                     htmlspecialchars($data['ScoreEquipe2']),
                     htmlspecialchars($data['jeu']),
                     htmlspecialchars($data['statut']),
-                    htmlspecialchars($data['idCreateur']),
+                    htmlspecialchars($data['createur_id']),
                     htmlspecialchars($data['id'])
                 ]
             );

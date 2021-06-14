@@ -1,23 +1,23 @@
 <?php
 
 
-class Jeu extends AbstractDAO
+class Jeu
 {
     private $id;
     private $nom;
-    private $equipes;
+    private $equipe;
 
     /**
      * Jeu constructor.
      * @param $id
      * @param $nom
-     * @param $equipes
+     * @param $equipe
      */
-    public function __construct($id, $nom, $equipes = false)
+    public function __construct($id, $nom, $equipe = false)
     {
         $this->id = $id;
         $this->nom = $nom;
-        $this->equipes = $equipes;
+        $this->equipe = $equipe;
     }
 
     public function __get($prop)

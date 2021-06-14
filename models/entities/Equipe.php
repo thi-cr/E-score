@@ -6,7 +6,7 @@ class Equipe extends AbstractDAO
     private $id;
     private $nom;
     private $tag;
-    private $idCapitaine;
+    private $capitaine_id;
     private $joueurs;
     private $jeux;
     private $matchs;
@@ -16,17 +16,17 @@ class Equipe extends AbstractDAO
      * @param $id
      * @param $nom
      * @param $tag
-     * @param $idCapitaine
+     * @param $capitaine_id
      * @param $joueurs
      * @param $jeux
      * @param $matchs
      */
-    public function __construct($id, $nom, $tag, $idCapitaine, $joueurs = false, $jeux = false, $matchs = false)
+    public function __construct($id, $nom, $tag, $capitaine_id, $joueurs = false, $jeux = false, $matchs = false)
     {
         $this->id = $id;
         $this->nom = $nom;
         $this->tag = $tag;
-        $this->idCapitaine = $idCapitaine;
+        $this->capitaine_id = $capitaine_id;
         $this->joueurs = $joueurs;
         $this->jeux = $jeux;
         $this->matchs = $matchs;

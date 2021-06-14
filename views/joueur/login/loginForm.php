@@ -1,2 +1,2 @@
 <?php
-echo 'test';
+var_dump($equipes[0]->jeux);

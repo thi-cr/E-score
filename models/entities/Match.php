@@ -1,7 +1,7 @@
 <?php
 
 
-class Match extends AbstractDAO
+class Match
 {
     private $id;
     private $equipe1;
@@ -10,7 +10,7 @@ class Match extends AbstractDAO
     private $ScoreEquipe2;
     private $jeu;
     private $statut;
-    private $idCreateur;
+    private $createur_id;
 
     /**
      * Match constructor.
@@ -21,9 +21,9 @@ class Match extends AbstractDAO
      * @param $ScoreEquipe2
      * @param $jeu
      * @param $statut
-     * @param $idCreateur
+     * @param $createur_id
      */
-    public function __construct($id, $equipe1, $equipe2, $ScoreEquipe1, $ScoreEquipe2, $jeu, $statut, $idCreateur)
+    public function __construct($id, $equipe1, $equipe2, $ScoreEquipe1, $ScoreEquipe2, $jeu, $statut, $createur_id)
     {
         $this->id = $id;
         $this->equipe1 = $equipe1;
@@ -32,7 +32,7 @@ class Match extends AbstractDAO
         $this->ScoreEquipe2 = $ScoreEquipe2;
         $this->jeu = $jeu;
         $this->statut = $statut;
-        $this->idCreateur = $idCreateur;
+        $this->createur_id = $createur_id;
     }
 
 
