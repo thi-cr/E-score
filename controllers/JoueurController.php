@@ -16,4 +16,15 @@ class JoueurController extends AbstractController
         include('../views/foot.php');
     }
 
+
+    public function store($id, $data){
+        $this->dao->store(false,$data);
+    }
+
+    public function register($id,$data){
+        var_dump("in register",$data);
+        //$this->$this->store(false, $data);
+        $this->store(false,$data);
+    }
+
 }

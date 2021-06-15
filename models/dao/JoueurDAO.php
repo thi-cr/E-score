@@ -80,16 +80,29 @@ class JoueurDAO extends AbstractDAO
             return false;
         }
 
+        $joueurDAO = new JoueurDAO();
+
+        $joueur = $this->create(
+            [
+                'id' => 0,
+                'nom' =>$data['nom'],
+                'prenom' =>$data['prenom'],
+                'password' => password_hash($data['password'],PASSWORD_DEFAULT),
+                'pseudo' =>$data['pseudo'],
+                'email' =>$data['email'],
+            ]
+        );
+
         try {
             $statement = $this->connection->prepare(
                 "INSERT INTO {$this->table} (nom, prenom, password, pseudo, email) VALUES (?, ?, ?, ?, ?)"
             );
             $statement->execute([
-                htmlspecialchars($data['nom']),
-                htmlspecialchars($data['prenom']),
-                htmlspecialchars($data['password']),
-                htmlspecialchars($data['pseudo']),
-                htmlspecialchars($data['email'])
+                htmlspecialchars($joueur->nom),
+                htmlspecialchars($joueur->prenom),
+                htmlspecialchars($joueur->password),
+                htmlspecialchars($joueur->pseudo),
+                htmlspecialchars($joueur->email)
             ]);
             return true;
         } catch (PDOException $e) {

@@ -14,7 +14,7 @@ class Router
     {
         $this->get = $_GET;
         $this->post = $_POST;
-        $this->actions = ['create', 'edit', 'delete', 'show', 'update', 'store', 'index', 'add', 'login'];
+        $this->actions = ['create', 'edit', 'delete', 'show', 'update', 'store', 'index', 'add', 'login','register'];
         $this->controllers = ['index' => 'JoueurController', 'joueurs' => 'JoueurController', 'equipes' => 'EquipeController', 'matchs' => 'MatchController'];
         $this->request = array();
         $this->data = $this->parseURI($_SERVER['REQUEST_URI']);
@@ -79,8 +79,15 @@ class Router
             $data = $this->post;
         }
 
+//        appeller la méthode du controller
+//        $this->controller_instance->{$this->request['action']}($this->request['id'], $data);
+
         //appeller la méthode du controller
-        $this->controller_instance->{$this->request['action']}($this->request['id'], $data);
+        if (method_exists($this->controller_instance, $this->request['action'])) {
+            $this->controller_instance->{$this->request['action']}($this->request['id'], $data);
+        } else {
+            echo "Methode n'existe pas sur ce controlleur";
+        }
 
     }
 }
