@@ -109,4 +109,34 @@ class JoueurDAO extends AbstractDAO
             print $e->getMessage();
         }
     }
+    // vérifie si user en db ? si oui il le renvoie et on check le mdp
+    public function verify($data){
+        if (empty($data['pseudo']) || empty($data['password'])){
+            return false;
+        }
+        try {
+            $statement = $this->connection->prepare("select * from {$this->table} where pseudo = ? ");
+            $statement->execute([
+                $data['pseudo']
+            ]);
+            $result = $statement->fetch(PDO::FETCH_ASSOC);
+
+            $joueur = $this->create($result);
+            if($joueur){
+                if(password_verify($data['password'], $joueur->password)) {
+                    var_dump('user ok');
+                    return $joueur;
+                }
+            }
+            var_dump('mdp incorrect');
+            return false;
+        }catch (PDOException $e) {
+            print $e->getMessage();
+            return false;
+        }
+    }
+
+    function fetchBySession(){
+    }
+
 }

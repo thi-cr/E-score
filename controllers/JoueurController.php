@@ -27,4 +27,15 @@ class JoueurController extends AbstractController
         $this->store(false,$data);
     }
 
+    public function login($id,$data){
+        $joueur = $this->dao->verify($data);
+        var_dump($joueur);
+/*        if($joueur){
+            header('Location:/index');
+        }else{
+            echo "erreur au login";
+        }*/
+    }
+
+
 }

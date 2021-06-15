@@ -2,6 +2,26 @@
 
 abstract class AbstractController
 {
+
+
+/*    public function getJoueur() {
+        if (!isset($_COOKIE['session_token'])) {
+            var_dump('no cookie!');
+            return false;
+        }
+        $joueurDAO = new JoueurDAO();
+        return $joueurDAO->fetchBySession($_COOKIE['session_token']);
+    }*/
+
+/*    public function isLogged() {
+        $joueur = $this->getJoueur();
+        if(!$joueur) {
+            include('../views/joueur/login/loginForm.php');
+            die;
+        }
+        return $joueur;
+    }*/
+
     public function create()
     {
         var_dump('no create');
@@ -42,10 +62,6 @@ abstract class AbstractController
         var_dump('no add');
     }
 
-    public function login()
-    {
-        var_dump('no login');
-    }
 
 
 }
