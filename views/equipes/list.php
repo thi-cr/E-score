@@ -14,11 +14,11 @@
                         <th><?= $equipe->__get('tag'); ?></th>
                         </thead>
                         <tbody>
-                        <tr>
                             <?php foreach ($equipe->joueurs as $joueur): ?>
+                            <tr>
                                 <td><?= $joueur->pseudo ?></td>
+                            </tr>
                             <?php endforeach; ?>
-                        </tr>
                         </tbody>
                     </table>
                 <?php endforeach; ?>
