@@ -7,7 +7,7 @@
 
 <h3>Connexion</h3>
 <form action="/joueurs/login" method="post">
-    <label>Nom :</label>
+    <label>Pseudo :</label>
     <input type="text" name="pseudo" required>
     <label>mot de passe :</label>
     <input type="password" name="password" required>
