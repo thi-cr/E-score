@@ -19,13 +19,13 @@
 
     <label>Nom :</label>
     <input type="text" name="nom" required>
-    <label>Prénom :</label>
+    <br><label>Prénom :</label>
     <input type="text" name="prenom" required>
-    <label>mot de passe :</label>
+    <br><label>mot de passe :</label>
     <input type="password" name="password" required>
-    <label>pseudo :</label>
+    <br><label>pseudo :</label>
     <input type="text" name="pseudo" required>
-    <label>email :</label>
+    <br><label>email :</label>
     <input type="email" name="email" required>
     <input type="submit" value="s'inscrire" name="submit">
 </form>
