@@ -1,17 +1,20 @@
 <?php
 
-abstract class AbstractDAO {
+abstract class AbstractDAO
+{
     protected $connection;
     protected $table;
 
-    public function __construct ($table) {
+    public function __construct($table)
+    {
         $this->table = $table;
         $this->connection = new PDO('mysql:host=localhost;dbname=projet_e-score', 'root', '');
         $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
     //chercher tous
-    public function fetchAll () {
+    public function fetchAll()
+    {
         try {
             $statement = $this->connection->prepare("SELECT * FROM {$this->table}");
             $statement->execute();
@@ -22,7 +25,8 @@ abstract class AbstractDAO {
         }
     }
 
-    public function fetchWhere ($ref, $value) {
+    public function fetchWhere($ref, $value)
+    {
         try {
             $statement = $this->connection->prepare("SELECT * FROM {$this->table} WHERE {$ref} = ?");
             $statement->execute([$value]);
@@ -33,14 +37,16 @@ abstract class AbstractDAO {
         }
     }
 
+
     //chercher 1
-    public function fetch ($id, $deep = true) {
+    public function fetch($id, $deep = true)
+    {
         try {
             $statement = $this->connection->prepare("SELECT * FROM {$this->table} WHERE id = ?");
             $statement->execute([$id]);
             $result = $statement->fetch(PDO::FETCH_ASSOC);
 
-            if($deep) {
+            if ($deep) {
                 return $this->deepCreate($result);
             }
             return $this->create($result);
@@ -50,14 +56,15 @@ abstract class AbstractDAO {
         }
     }
 
-    public function fetchIntermediate ($table, $id, $key, $foreign) {
+    public function fetchIntermediate($table, $id, $key, $foreign)
+    {
         try {
             $statement = $this->connection->prepare("SELECT * FROM {$table} WHERE {$key} = ?");
             $statement->execute([$id]);
             $result = $statement->fetchAll(PDO::FETCH_ASSOC);
 
             $list = [];
-            foreach($result as $item) {
+            foreach ($result as $item) {
                 array_push($list, $this->fetch($item[$foreign], false));
             }
             return $list;
@@ -67,7 +74,8 @@ abstract class AbstractDAO {
     }
 
 
-    public function createAll ($results) {
+    public function createAll($results)
+    {
         $list = array();
         foreach ($results as $result) {
             array_push($list, $this->create($result));
@@ -76,7 +84,8 @@ abstract class AbstractDAO {
     }
 
     //Créer tous avec relations
-    public function createAllDeep ($results) {
+    public function createAllDeep($results)
+    {
         $list = array();
         foreach ($results as $result) {
             array_push($list, $this->deepCreate($result));
@@ -85,21 +94,25 @@ abstract class AbstractDAO {
     }
 
     //Many to One
-    public function belongsTo ($dao, $id) {
+    public function belongsTo($dao, $id)
+    {
         return $dao->fetch($id, false);
     }
 
     //One to Many
-    public function hasMany ($dao, $col, $key) {
+    public function hasMany($dao, $col, $key)
+    {
         return $dao->fetchWhere($col, $key);
     }
 
     //Many to Many
-    public function belongsToMany ($dao, $table, $id, $key, $foreign) {
+    public function belongsToMany($dao, $table, $id, $key, $foreign)
+    {
         return $dao->fetchIntermediate($table, $id, $key, $foreign);
     }
 
-    public function associate ($table, $id, $key, $ref, $value) {
+    public function associate($table, $id, $key, $ref, $value)
+    {
         try {
             $statement = $this->connection->prepare("INSERT INTO {$table} ({$key}, {$ref}) VALUES (?, ?)");
             $statement->execute([
@@ -112,7 +125,8 @@ abstract class AbstractDAO {
         }
     }
 
-    public function dissociate ($table, $id, $key, $ref, $value) {
+    public function dissociate($table, $id, $key, $ref, $value)
+    {
 
         try {
             $statement = $this->connection->prepare("DELETE FROM {$table} WHERE {$key} = ? AND {$ref} = ?");
@@ -127,7 +141,8 @@ abstract class AbstractDAO {
 
     }
 
-    public function remove ($table, $id, $key) {
+    public function remove($table, $id, $key)
+    {
 
         try {
             $statement = $this->connection->prepare("DELETE FROM {$table} WHERE {$key} = ?");
