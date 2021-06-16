@@ -44,7 +44,6 @@ class MatchDAO extends AbstractDAO
             $result["jeu_id"],
             $result["statut"],
             $result["createur_id"],
-            $this->joueurs($result["id"])
         );
     }
 
@@ -58,7 +57,8 @@ class MatchDAO extends AbstractDAO
             $result["ScoreEquipe2"],
             $result["jeu_id"],
             $result["statut"],
-            $result["createur_id"]
+            $result["createur_id"],
+            $this->joueurs($result["id"])
         );
     }
 

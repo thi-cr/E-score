@@ -1,5 +1,4 @@
 <?php var_dump($joueur); ?>
-<?php var_dump($joueur->equipe->id); ?>
 <?php if ($joueur->id == $joueur->equipe->capitaine_id): ?>
     <h3>créer un match</h3>
     <form action="/matchs/add" method="post">
@@ -8,6 +7,13 @@
                 <?php if ($equipe->id != $joueur->equipe->id): ?>
                     <option type="number" name="equipe2_id" value="<?= $equipe->id ?>"><?= $equipe->nom ?></option>
                 <?php endif; ?>
+            <?php endforeach; ?>
+        </select>
+        <label>Jeu</label>
+        <select name="jeu" id="jeu">
+            <?php foreach ($equipeJoueur->jeux as $jeu): ?>
+                        <option type="number" name="jeu_id"
+                                value="<?= $jeu->id ?>"><?= $jeu->nom ?></option>
             <?php endforeach; ?>
         </select>
         <input hidden type="number" name="equipe1" value="<?= $joueur->equipe->id ?>">
@@ -27,7 +33,10 @@
         <select name="joueurs[]" id="joueurs" multiple>
             <?php foreach ($joueurs as $player): ?>
                 <?php if ($player->equipe->id == Null): ?>
-                    <option type="number" name="joueur_id" value="<?= $player->id ?>" <?php if($player->id == $joueur->id){echo 'hidden selected';} ?>><?= $player->pseudo ?></option>
+                    <option type="number" name="joueur_id"
+                            value="<?= $player->id ?>" <?php if ($player->id == $joueur->id) {
+                        echo 'hidden selected';
+                    } ?>><?= $player->pseudo ?></option>
                 <?php endif; ?>
             <?php endforeach; ?>
         </select>
