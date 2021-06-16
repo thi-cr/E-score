@@ -31,9 +31,9 @@ class JoueurController extends AbstractController
         $joueur = $this->dao->verify($data);
         var_dump($joueur);
         if($joueur){
+            $joueur = $this->dao->fetchWhere('id', $joueur->id);
             $EquipeDAO = new EquipeDAO();
             $equipes = $EquipeDAO->fetchAll();
-            $joueur = $this->dao->fetchWhere('id', $joueur->id);
             include('../views/head.php');
             include('../views/joueur/logged.php');
             include('../views/foot.php');

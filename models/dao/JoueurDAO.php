@@ -9,9 +9,9 @@ class JoueurDAO extends AbstractDAO
         parent::__construct('joueurs');
     }
 
-    public function equipe($joueur_id)
+    public function equipe($equipe_id)
     {
-        return $this->belongsTo(new EquipeDAO(), $joueur_id);
+        return $this->belongsTo(new EquipeDAO(), $equipe_id);
     }
 
     public function create($result)
@@ -35,7 +35,7 @@ class JoueurDAO extends AbstractDAO
             $result['pseudo'],
             $result['email'],
             $result['password'],
-            $this->equipe($result['id'])
+            $this->equipe($result['equipe_id'])
         );
     }
 
