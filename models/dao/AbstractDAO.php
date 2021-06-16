@@ -125,6 +125,22 @@ abstract class AbstractDAO
         }
     }
 
+
+    public function associateUpdate($table, $id, $key, $ref, $value)
+    {
+        try {
+            $statement = $this->connection->prepare("UPDATE {$table} SET {$key} = ? WHERE {$ref} = ? ");
+            $statement->execute([
+                $id,
+                $value
+            ]);
+            return true;
+        } catch (PDOException $e) {
+            return false;
+        }
+    }
+
+
     public function dissociate($table, $id, $key, $ref, $value)
     {
 

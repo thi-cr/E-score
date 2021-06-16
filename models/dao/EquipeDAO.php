@@ -29,7 +29,7 @@ class EquipeDAO extends AbstractDAO
     public function associate_joueurs($id, $joueur_ids)
     {
         foreach ($joueur_ids as $joueur) {
-            $this->associate('joueurs', $id, 'equipe_id', 'joueur_id', $joueur);
+            $this->associateUpdate('joueurs', $id, 'equipe_id', 'joueur_id', $joueur);
         }
     }
 
