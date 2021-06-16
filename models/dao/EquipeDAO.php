@@ -36,7 +36,7 @@ class EquipeDAO extends AbstractDAO
     public function dissociate_joueurs($id, $joueur_ids)
     {
         foreach ($joueur_ids as $joueur) {
-            $this->dissociate('joueurs', $id, 'equipe_id', 'joueur_id', $joueur);
+            $this->dissociateUpdate('joueurs', $id, 'equipe_id', 'joueur_id', $joueur);
         }
     }
 
