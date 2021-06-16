@@ -9,6 +9,29 @@ class MatchDAO extends AbstractDAO
         parent::__construct('matchs');
     }
 
+    public function joueurs($match_id)
+    {
+        return $this->belongsToMany(new JoueurDAO(), 'joueur_match', $match_id, 'match_id', 'joueur_id');
+    }
+
+    public function associate_joueurs($id, $joueur_ids)
+    {
+        foreach ($joueur_ids as $joueur) {
+            $this->associate('joueur_match', $id, 'match_id', 'joueur_id', $joueur);
+        }
+    }
+
+    public function dissociate_joueurs($id, $joueur_ids)
+    {
+        foreach ($joueur_ids as $joueur) {
+            $this->dissociate('joueur_match', $id, 'match_id', 'joueur_id', $joueur);
+        }
+    }
+
+    public function remove_joueurs($id){
+        $this->remove('joueur_match', $id, 'match_id');
+    }
+
 
     public function create($result)
     {
@@ -20,7 +43,8 @@ class MatchDAO extends AbstractDAO
             $result["ScoreEquipe2"],
             $result["jeu_id"],
             $result["statut"],
-            $result["createur_id"]
+            $result["createur_id"],
+            $this->joueurs($result["id"])
         );
     }
 
@@ -44,6 +68,7 @@ class MatchDAO extends AbstractDAO
         if (empty($data['equipe1']) || empty($data['equipe2']) || empty($data['ScoreEquipe1']) || empty($data['ScoreEquipe2']) || empty($data['jeu']) || empty($data['statut']) || empty($data['createur_id'])) {
             return false;
         }
+        $MatchDAO = new MatchDAO();
 
         try {
             $statement = $this->connection->prepare(
@@ -58,10 +83,15 @@ class MatchDAO extends AbstractDAO
                 htmlspecialchars($data['statut']),
                 htmlspecialchars($data['createur_id']),
             ]);
+            if (isset($data['joueurs'])) {
+                $id = $this->connection->lastInsertId();
+                $MatchDAO->associate_joueurs($id, $data['joueurs']);
+            }
             return true;
         } catch (PDOException $e) {
             print $e->getMessage();
         }
+        
     }
 
 
@@ -100,6 +130,23 @@ class MatchDAO extends AbstractDAO
             );
         } catch (PDOException $e) {
             print $e->getMessage();
+        }
+
+        $match = $this->fetch($data['id']);
+        $MatchDAO = new MatchDAO();
+
+        if (isset($data['joueurs'])) {
+            $diff = $match->has_joueurs($data['joueurs']);
+
+            if ($diff['associate']) {
+                $MatchDAO->associate_joueurs($data['id'], $diff['associate']);
+            }
+
+            if ($diff['dissociate']) {
+                $MatchDAO->dissociate_joueurs($data['id'], $diff['dissociate']);
+            }
+        }else{
+            $MatchDAO->remove_joueurs($data['id']);
         }
     }
 

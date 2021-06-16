@@ -30,11 +30,15 @@ class JoueurController extends AbstractController
     public function login($id,$data){
         $joueur = $this->dao->verify($data);
         var_dump($joueur);
-/*        if($joueur){
-            header('Location:/index');
+        if($joueur){
+            $EquipeDAO = new EquipeDAO();
+            $equipes = $EquipeDAO->fetchAll();
+            include('../views/head.php');
+            include('../views/joueur/logged.php');
+            include('../views/foot.php');
         }else{
             echo "erreur au login";
-        }*/
+        }
     }
 
 

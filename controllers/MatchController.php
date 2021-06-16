@@ -19,4 +19,10 @@ class MatchController extends AbstractController
         include('../views/matchs/list.php');
         include('../views/foot.php');
     }
+
+    public function add()
+    {
+        $joueurDAO = new JoueurDAO();
+
+    }
 }
