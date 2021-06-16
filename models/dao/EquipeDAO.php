@@ -29,14 +29,14 @@ class EquipeDAO extends AbstractDAO
     public function associate_joueurs($id, $joueur_ids)
     {
         foreach ($joueur_ids as $joueur) {
-            $this->associateUpdate('joueurs', $id, 'equipe_id', 'joueur_id', $joueur);
+            $this->associateUpdate('joueurs', $id, 'equipe_id', 'id', $joueur);
         }
     }
 
     public function dissociate_joueurs($id, $joueur_ids)
     {
         foreach ($joueur_ids as $joueur) {
-            $this->dissociateUpdate('joueurs', $id, 'equipe_id', 'joueur_id', $joueur);
+            $this->dissociateUpdate('joueurs', $id, 'equipe_id', 'id', $joueur);
         }
     }
 
@@ -96,6 +96,8 @@ class EquipeDAO extends AbstractDAO
             ]);
             if (isset($data['joueurs'])) {
                 $id = $this->connection->lastInsertId();
+                var_dump($id);
+                var_dump($data["joueurs"]);
                 $EquipeDAO->associate_joueurs($id, $data['joueurs']);
                 return true;
             }

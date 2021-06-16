@@ -14,4 +14,8 @@ class EquipeController extends AbstractController
         include('../views/equipes/list.php');
         include('../views/foot.php');
     }
+
+    public function store($id, $data){
+        $this->dao->store($id, $data);
+    }
 }
