@@ -47,5 +47,42 @@ class Equipe
         }
     }
 
+    public function has_joueur ($joueur_id) {
+        //detecter si dans $this->joueurs il y a un joueur avec cette id, si oui je vais return true sinon false
+        if($this->joueurs) {
+            foreach($this->joueurs as $joueur) {
+                if($joueur && $joueur->id && $joueur->id == $joueur_id) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public function has_joueurs ($joueur_ids) {
+        $current_ids = $this->get_ids($this->joueurs);
+        $dissociate = array_diff($current_ids, $joueur_ids);
+        $associate = array();
+
+        foreach($joueur_ids as $joueur_id) {
+            if (!in_array($joueur_id, $current_ids)) {
+                array_push($associate, $joueur_id);
+            }
+        }
+
+        return ["associate" => $associate, "dissociate" => $dissociate];
+
+    }
+    public function get_ids($objs)
+    {
+        //renvoyer un tableau d'ID en ayant recu un tableau d'objets
+        $ids = array();
+        foreach ($objs as $obj) {
+            if ($obj->id) {
+                array_push($ids, $obj->id);
+            }
+        }
+        return $ids;
+    }
 
 }

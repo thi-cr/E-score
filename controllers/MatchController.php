@@ -36,6 +36,7 @@ class MatchController extends AbstractController
         include('../views/foot.php');
     }
 
+
     public function store($id, $data)
     {
         $this->dao->store(false, $data);

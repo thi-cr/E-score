@@ -45,3 +45,33 @@
     </form>
 
 <?php endif; ?>
+
+<h3>Mon equipe</h3>
+<section id="equipes-list">
+    <?php if (!empty($equipeJoueur)): ?>
+        <section id="equipes-list">
+                <table>
+                    <thead>
+                    <th><?= $equipeJoueur->__get('nom'); ?></th>
+                    <th><?= $equipeJoueur->__get('tag'); ?></th>
+                    </thead>
+
+                    <tbody>
+                    <?php foreach ($equipeJoueur->joueurs as $joueur): ?>
+                        <tr>
+                            <td><?= $joueur->pseudo ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                    </tbody>
+
+                </table>
+            </tbody>
+            <?php if ($joueur->id == $joueur->equipe->capitaine_id): ?>
+            <a href="/equipes/edit/<?= $equipeJoueur->id ?>">Modif</a>
+            <?php endif; ?>
+            </table>
+        </section>
+    <?php endif; ?>
+</section>
+
+
