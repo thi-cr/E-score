@@ -1,4 +1,3 @@
-
 <?php if ($joueur->id == $joueur->equipe->capitaine_id): ?>
     <h3>créer un match</h3>
     <form action="/matchs/add" method="post">
@@ -12,8 +11,8 @@
         <label>Jeu</label>
         <select name="jeu" id="jeu">
             <?php foreach ($equipeJoueur->jeux as $jeu): ?>
-                        <option type="number" name="jeu_id"
-                                value="<?= $jeu->id ?>"><?= $jeu->nom ?></option>
+                <option type="number" name="jeu_id"
+                        value="<?= $jeu->id ?>"><?= $jeu->nom ?></option>
             <?php endforeach; ?>
         </select>
         <input hidden type="number" name="equipe1" value="<?= $joueur->equipe->id ?>">

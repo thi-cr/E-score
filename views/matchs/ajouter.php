@@ -1,4 +1,3 @@
-<?php var_dump($jeu)?>
 <section>
     <form action="/matchs/store">
         <input hidden type="number" name="equipe1" value="<?= $equipe1->id ?>">
@@ -17,13 +16,13 @@
         <br><label>Lineup <?= $equipe1->nom ?></label>
         <select name="lineup1[]" id="lineup1" multiple>
             <?php foreach ($lineup1 as $joueur): ?>
-            <option name="joueur1_id" value="<?= $joueur->id ?>"><?= $joueur->pseudo?></option>
+                <option name="joueur1_id" value="<?= $joueur->id ?>"><?= $joueur->pseudo ?></option>
             <?php endforeach; ?>
         </select>
         <br><label>Lineup <?= $equipe2->nom ?></label>
         <select name="lineup2[]" id="lineup2" multiple>
             <?php foreach ($lineup2 as $joueur): ?>
-                <option name="joueur2_id" value="<?= $joueur->id ?>"><?= $joueur->pseudo?></option>
+                <option name="joueur2_id" value="<?= $joueur->id ?>"><?= $joueur->pseudo ?></option>
             <?php endforeach; ?>
         </select>
         <input type="submit" value="créer le match">
