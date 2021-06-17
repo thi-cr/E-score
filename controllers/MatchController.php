@@ -20,9 +20,10 @@ class MatchController extends AbstractController
         include('../views/foot.php');
     }
 
-    public function add($data)
+    public function add($id, $data)
     {
         var_dump($data);
+        var_dump($id);
         $joueurDAO = new JoueurDAO();
         $joueurs = $joueurDAO->fetchAll();
         $createur = $joueurDAO->fetch($data["createur"]);
