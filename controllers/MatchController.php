@@ -40,5 +40,13 @@ class MatchController extends AbstractController
     public function store($id, $data)
     {
         $this->dao->store(false, $data);
+
+        $joueurDAO = new JoueurDAO();
+        $joueur = $joueurDAO->fetch($data['createur_id']);
+        $joueurs = $joueurDAO->fetchAll();
+
+        $equipeDAO = new EquipeDAO();
+        $equipes = $equipeDAO->fetchAll();
+        $equipeJoueur = $equipeDAO->fetch($data["equipe1"]);
     }
 }

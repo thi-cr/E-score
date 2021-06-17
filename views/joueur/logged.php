@@ -46,7 +46,7 @@
 
 <?php endif; ?>
 
-<?php if (!empty($equipeJoueur)): ?>
+
 <?php var_dump($equipeJoueur->capitaine_id) ?>
 <?php var_dump($joueur->id) ?>
 <h3>Mon equipe</h3>
@@ -73,7 +73,6 @@
         <?php endif; ?>
         </table>
     </section>
-    <?php endif; ?>
 </section>
 
 
