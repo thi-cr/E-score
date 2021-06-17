@@ -12,6 +12,8 @@ class Match
     private $statut;
     private $createur_id;
     private $joueurs;
+    private $lineup1;
+    private $lineup2;
 
     /**
      * Match constructor.
@@ -23,9 +25,10 @@ class Match
      * @param $jeu
      * @param $statut
      * @param $createur_id
-     * @param $joueurs
+     * @param $lineup1
+     * @param $lineup2
      */
-    public function __construct($id, $equipe1, $equipe2, $ScoreEquipe1, $ScoreEquipe2, $jeu, $statut, $createur_id, $joueurs = false)
+    public function __construct($id, $equipe1, $equipe2, $ScoreEquipe1, $ScoreEquipe2, $jeu, $statut, $createur_id, $lineup1 = false, $lineup2 = false)
     {
         $this->id = $id;
         $this->equipe1 = $equipe1;
@@ -35,7 +38,8 @@ class Match
         $this->jeu = $jeu;
         $this->statut = $statut;
         $this->createur_id = $createur_id;
-        $this->joueurs = $joueurs;
+        $this->lineup1 = $lineup1;
+        $this->lineup2 = $lineup2;
     }
 
 

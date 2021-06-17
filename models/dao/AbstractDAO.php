@@ -125,6 +125,21 @@ abstract class AbstractDAO
         }
     }
 
+    public function associateMatch($table, $id, $key, $ref, $value, $equipe, $equipe_id)
+    {
+        try {
+            $statement = $this->connection->prepare("INSERT INTO {$table} ({$key}, {$ref}, {$equipe}) VALUES (?, ?, ?)");
+            $statement->execute([
+                $id,
+                $value,
+                $equipe_id
+            ]);
+            return true;
+        } catch (PDOException $e) {
+            return false;
+        }
+    }
+
 
     public function associateUpdate($table, $id, $key, $ref, $value)
     {

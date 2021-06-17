@@ -14,10 +14,10 @@ class MatchDAO extends AbstractDAO
         return $this->belongsToMany(new JoueurDAO(), 'joueur_match', $match_id, 'match_id', 'joueur_id');
     }
 
-    public function associate_joueurs($id, $joueur_ids)
+    public function associate_joueurs($id, $joueur_ids, $equipe_id)
     {
         foreach ($joueur_ids as $joueur) {
-            $this->associate('joueur_match', $id, 'match_id', 'joueur_id', $joueur);
+            $this->associateMatch('joueur_match', $id, 'match_id', 'joueur_id', $joueur, 'equipe_id', $equipe_id);
         }
     }
 
@@ -72,7 +72,7 @@ class MatchDAO extends AbstractDAO
 
         try {
             $statement = $this->connection->prepare(
-                "INSERT INTO {$this->table} (equipe1, equipe2, , pseudo, email) VALUES (?, ?, ?, ?, ?)"
+                "INSERT INTO {$this->table} (equipe1, equipe2, ScoreEquipe1, ScoreEquipe2, jeu_id, statut, createur_id) VALUES (?, ?, ?, ?, ?, ?, ?)"
             );
             $statement->execute([
                 htmlspecialchars($data['equipe1']),
@@ -83,9 +83,13 @@ class MatchDAO extends AbstractDAO
                 htmlspecialchars($data['statut']),
                 htmlspecialchars($data['createur_id']),
             ]);
-            if (isset($data['joueurs'])) {
-                $id = $this->connection->lastInsertId();
-                $MatchDAO->associate_joueurs($id, $data['joueurs']);
+
+            $id = $this->connection->lastInsertId();
+            if (isset($data['lineup1'])) {
+                $MatchDAO->associate_joueurs($id, $data['lineup1'], $data['equipe1']);
+            }
+            if (isset($data['lineup2'])) {
+                $MatchDAO->associate_joueurs($id, $data['lineup2'], $data['equipe2']);
             }
             return true;
         } catch (PDOException $e) {
@@ -135,18 +139,28 @@ class MatchDAO extends AbstractDAO
         $match = $this->fetch($data['id']);
         $MatchDAO = new MatchDAO();
 
-        if (isset($data['joueurs'])) {
-            $diff = $match->has_joueurs($data['joueurs']);
+        if (isset($data['lineup1'])) {
+            $diff = $match->has_joueurs($data['lineup1']);
 
             if ($diff['associate']) {
-                $MatchDAO->associate_joueurs($data['id'], $diff['associate']);
+                $MatchDAO->associate_joueurs($data['id'], $diff['associate'], $data['equipe1']);
             }
 
             if ($diff['dissociate']) {
                 $MatchDAO->dissociate_joueurs($data['id'], $diff['dissociate']);
             }
-        }else{
-            $MatchDAO->remove_joueurs($data['id']);
+        }
+
+        if (isset($data['lineup2'])) {
+            $diff = $match->has_joueurs($data['lineup2']);
+
+            if ($diff['associate']) {
+                $MatchDAO->associate_joueurs($data['id'], $diff['associate'], $data['equipe2']);
+            }
+
+            if ($diff['dissociate']) {
+                $MatchDAO->dissociate_joueurs($data['id'], $diff['dissociate']);
+            }
         }
     }
 
