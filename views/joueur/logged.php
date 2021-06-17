@@ -1,9 +1,9 @@
-<?php if ($joueur->id == $joueur->equipe->capitaine_id): ?>
+<?php if ($joueur->id == $equipeJoueur->capitaine_id): ?>
     <h3>créer un match</h3>
     <form action="/matchs/add" method="post">
         <select name="equipe2" id="equipe2">
             <?php foreach ($equipes as $equipe): ?>
-                <?php if ($equipe->id != $joueur->equipe->id): ?>
+                <?php if ($equipe->id != $equipeJoueur->id): ?>
                     <option type="number" name="equipe2_id" value="<?= $equipe->id ?>"><?= $equipe->nom ?></option>
                 <?php endif; ?>
             <?php endforeach; ?>
@@ -46,31 +46,33 @@
 
 <?php endif; ?>
 
+<?php if (!empty($equipeJoueur)): ?>
+<?php var_dump($equipeJoueur->capitaine_id) ?>
+<?php var_dump($joueur->id) ?>
 <h3>Mon equipe</h3>
 <section id="equipes-list">
-    <?php if (!empty($equipeJoueur)): ?>
-        <section id="equipes-list">
-                <table>
-                    <thead>
-                    <th><?= $equipeJoueur->__get('nom'); ?></th>
-                    <th><?= $equipeJoueur->__get('tag'); ?></th>
-                    </thead>
+    <section id="equipes-list">
+        <table>
+            <thead>
+            <th><?= $equipeJoueur->__get('nom'); ?></th>
+            <th><?= $equipeJoueur->__get('tag'); ?></th>
+            </thead>
 
-                    <tbody>
-                    <?php foreach ($equipeJoueur->joueurs as $joueur): ?>
-                        <tr>
-                            <td><?= $joueur->pseudo ?></td>
-                        </tr>
-                    <?php endforeach; ?>
-                    </tbody>
-
-                </table>
+            <tbody>
+            <?php foreach ($equipeJoueur->joueurs as $joueur): ?>
+                <tr>
+                    <td><?= $joueur->pseudo ?></td>
+                </tr>
+            <?php endforeach; ?>
             </tbody>
-            <?php if ($joueur->id == $joueur->equipe->capitaine_id): ?>
+
+        </table>
+        </tbody>
+        <?php if ($joueur->id == $equipeJoueur->capitaine_id): ?>
             <a href="/equipes/edit/<?= $equipeJoueur->id ?>">Modif</a>
-            <?php endif; ?>
-            </table>
-        </section>
+        <?php endif; ?>
+        </table>
+    </section>
     <?php endif; ?>
 </section>
 
