@@ -26,6 +26,22 @@ class EquipeDAO extends AbstractDAO
         return $this->belongsToMany(new JeuDAO(), 'equipe_jeu', $equipe_id, 'equipe_id', 'jeu_id');
     }
 
+    public function associate_jeux($id, $jeux_ids)
+    {
+        foreach ($jeux_ids as $jeu) {
+            $this->associate('equipe_jeu', $id, 'equipe_id', 'jeu_id', $jeu);
+        }
+    }
+
+    public function dissociate_jeux($id, $jeux_ids)
+    {
+        foreach ($jeux_ids as $jeu) {
+            $this->dissociate('equipe_jeu', $id, 'equipe_id', 'jeu_id', $jeu);
+        }
+    }
+
+
+
     public function associate_joueurs($id, $joueur_ids)
     {
         foreach ($joueur_ids as $joueur) {
@@ -155,9 +171,22 @@ class EquipeDAO extends AbstractDAO
             if ($diff['dissociate']) {
                 $EquipeDAO->dissociate_joueurs($data['id'], $diff['dissociate']);
             }
-        } else {
-            $EquipeDAO->remove_joueurs($data['id']);
         }
+
+        if (isset($data['jeux'])) {
+            $diff = $equipe->has_jeux($data['jeux']);
+
+            if ($diff['associate']) {
+                $EquipeDAO->associate_jeux($data['id'], $diff['associate']);
+            }
+
+            if ($diff['dissociate']) {
+                $EquipeDAO->dissociate_jeux($data['id'], $diff['dissociate']);
+            }
+        }
+
+
+
 
     }
 }

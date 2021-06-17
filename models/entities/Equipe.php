@@ -69,10 +69,41 @@ class Equipe
                 array_push($associate, $joueur_id);
             }
         }
-
         return ["associate" => $associate, "dissociate" => $dissociate];
-
     }
+
+
+    public function has_jeu ($jeu_id) {
+        //detecter si dans $this->joueurs il y a un joueur avec cette id, si oui je vais return true sinon false
+        if($this->jeux) {
+            foreach($this->jeu as $jeu) {
+                if($jeu && $jeu->id && $jeu->id == $jeu_id) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public function has_jeux ($jeu_ids) {
+        $current_ids = $this->get_ids($this->jeux);
+        $dissociate = array_diff($current_ids, $jeu_ids);
+        $associate = array();
+
+        foreach($jeu_ids as $jeu_id) {
+            if (!in_array($jeu_id, $current_ids)) {
+                array_push($associate, $jeu_id);
+            }
+        }
+        return ["associate" => $associate, "dissociate" => $dissociate];
+    }
+
+
+
+
+
+
+
     public function get_ids($objs)
     {
         //renvoyer un tableau d'ID en ayant recu un tableau d'objets

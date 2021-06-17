@@ -11,6 +11,8 @@
         <label>TAG</label>
         <input type="text" name="tag" value="<?= $equipe->tag ?>">
 
+
+
         <select name="joueurs[]" id="joueurs" multiple>
             <?php foreach ($joueurs as $joueur): ; ?>
                 <?php if ($joueur->equipe->id == $equipe->id || $joueur->equipe->id == null): ?>
