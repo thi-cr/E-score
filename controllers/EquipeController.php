@@ -21,6 +21,8 @@ class EquipeController extends AbstractController
 
         $joueurDAO = new JoueurDAO();
         $joueurs = $joueurDAO->fetchAll();
+        $jeuDAO = new JeuDAO();
+        $jeux = $jeuDAO->fetchAll();
 
         include('../views/head.php');
         include('../views/equipes/edit.php');
@@ -36,7 +38,7 @@ class EquipeController extends AbstractController
         $joueur = $joueurDAO->fetch($data['capitaine_id']);
         $joueurs = $joueurDAO->fetchAll();
 
-        $equipesJoueur = $this->dao->fetch($joueur->equipe->id);
+        $equipeJoueur = $this->dao->fetch($joueur->equipe->id);
 
         include('../views/head.php');
         include('../views/joueur/logged.php');
