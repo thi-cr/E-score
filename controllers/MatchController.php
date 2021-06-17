@@ -20,9 +20,19 @@ class MatchController extends AbstractController
         include('../views/foot.php');
     }
 
-    public function add()
+    public function add($data)
     {
+        var_dump($data);
         $joueurDAO = new JoueurDAO();
-
+        $joueurs = $joueurDAO->fetchAll();
+        $createur = $joueurDAO->fetch($data["createur"]);
+        $equipeDAO = new EquipeDAO();
+        $equipe1 = $equipeDAO->fetch($data["equipe1"]);
+        $equipe2 = $equipeDAO->fetch($data["equipe2"]);
+        $jeuDAO = new JeuDAO();
+        $jeu = $jeuDAO->fetch($data["jeu"]);
+        include('../views/head.php');
+        include('../views/matchs/ajouter.php');
+        include('../views/foot.php');
     }
 }

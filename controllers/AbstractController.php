@@ -57,7 +57,7 @@ abstract class AbstractController
         var_dump('no index');
     }
 
-    public function add()
+    public function add($data)
     {
         var_dump('no add');
     }

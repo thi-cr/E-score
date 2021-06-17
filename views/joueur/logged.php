@@ -1,4 +1,4 @@
-<?php var_dump($joueur); ?>
+
 <?php if ($joueur->id == $joueur->equipe->capitaine_id): ?>
     <h3>créer un match</h3>
     <form action="/matchs/add" method="post">
@@ -17,6 +17,7 @@
             <?php endforeach; ?>
         </select>
         <input hidden type="number" name="equipe1" value="<?= $joueur->equipe->id ?>">
+        <input hidden type="number" name="createur" value="<?= $joueur->id ?>">
         <input type="submit" value="Créer un match contre l'equipe sélectionnée">
     </form>
 <?php endif; ?>
