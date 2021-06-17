@@ -59,9 +59,9 @@
             </thead>
 
             <tbody>
-            <?php foreach ($equipeJoueur->joueurs as $joueur): ?>
+            <?php foreach ($equipeJoueur->joueurs as $player): ?>
                 <tr>
-                    <td><?= $joueur->pseudo ?></td>
+                    <td><?= $player->pseudo ?></td>
                 </tr>
             <?php endforeach; ?>
             </tbody>

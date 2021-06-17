@@ -112,8 +112,6 @@ class EquipeDAO extends AbstractDAO
             ]);
             if (isset($data['joueurs'])) {
                 $id = $this->connection->lastInsertId();
-                var_dump($id);
-                var_dump($data["joueurs"]);
                 $EquipeDAO->associate_joueurs($id, $data['joueurs']);
                 return true;
             }
