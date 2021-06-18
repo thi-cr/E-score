@@ -47,9 +47,6 @@
 
 <?php endif; ?>
 
-
-<?php var_dump($equipeJoueur->capitaine_id) ?>
-<?php var_dump($joueur->id) ?>
 <h3>Mon equipe</h3>
 <section id="equipes-list">
     <section id="equipes-list">
@@ -75,5 +72,3 @@
         </table>
     </section>
 </section>
-
-
