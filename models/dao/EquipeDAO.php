@@ -88,8 +88,8 @@ class EquipeDAO extends AbstractDAO
         if (empty($data['nom']) || empty($data['tag']) || empty($data['capitaine_id'])) {
             return false;
         }
+        $data['joueurs'][] = $data["capitaine_id"];
         $EquipeDAO = new EquipeDAO();
-
         $equipe = $this->create(
             [
                 'id' => 0,
@@ -143,6 +143,7 @@ class EquipeDAO extends AbstractDAO
 
     public function update($id, $data)
     {
+        $data['joueurs'][] = $data["capitaine_id"];
         try {
             $statement = $this->connection->prepare("UPDATE {$this->table} SET nom = ?, tag = ?, capitaine_id = ? WHERE id = ?");
             $statement->execute(

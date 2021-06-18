@@ -33,11 +33,9 @@
         <label>Joueurs</label>
         <select name="joueurs[]" id="joueurs" multiple>
             <?php foreach ($joueurs as $player): ?>
-                <?php if ($player->equipe->id == Null): ?>
+                <?php if ($player->equipe->id == Null && $player->id != $joueur->id): ?>
                     <option type="number" name="joueur_id"
-                            value="<?= $player->id ?>" <?php if ($player->id == $joueur->id) {
-                        echo 'hidden selected';
-                    } ?>><?= $player->pseudo ?></option>
+                            value="<?= $player->id ?>"><?= $player->pseudo ?></option>
                 <?php endif; ?>
             <?php endforeach; ?>
         </select>
@@ -111,8 +109,9 @@
             <?php endfor; ?>
             </tbody>
         </table>
+        <br>statut: <?= $match->statut?>
         <?php if ($joueur->id == $equipeJoueur->capitaine_id): ?>
-            <a href="/matchs/edit/<?= $match->id ?>">Modif</a>
+            <BR><a href="/matchs/edit/<?= $match->id ?>">Modif</a>
         <form action="/matchs/delete" method="post">
             <input hidden type="number" name="id" value="<?= $match->id?>">
             <input type="submit" value="Supprimer">
