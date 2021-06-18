@@ -109,7 +109,7 @@
             </tbody>
         </table>
         <?php if ($joueur->id == $equipeJoueur->capitaine_id): ?>
-            <a href="/matchs/edit/<?= $equipeJoueur->id ?>">Modif</a>
+            <a href="/matchs/edit/<?= $match->id ?>">Modif</a>
         <?php endif; ?>
     <?php endforeach; ?>
 </section>

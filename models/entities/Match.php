@@ -55,4 +55,47 @@ class Match
             $this->$prop = $value;
         }
     }
+
+
+    public function get_ids($objs)
+    {
+        //renvoyer un tableau d'ID en ayant recu un tableau d'objets
+        $ids = array();
+        foreach ($objs as $obj) {
+            if ($obj->id) {
+                array_push($ids, $obj->id);
+            }
+        }
+        return $ids;
+    }
+
+
+    public function has_joueurs1($joueur_ids)
+    {
+        $current_ids = $this->get_ids($this->lineup1);
+        $dissociate = array_diff($current_ids, $joueur_ids);
+        $associate = array();
+
+        foreach ($joueur_ids as $joueur_id) {
+            if (!in_array($joueur_id, $current_ids)) {
+                array_push($associate, $joueur_id);
+            }
+        }
+        return ["associate" => $associate, "dissociate" => $dissociate];
+    }
+
+
+    public function has_joueurs2($joueur_ids)
+    {
+        $current_ids = $this->get_ids($this->lineup2);
+        $dissociate = array_diff($current_ids, $joueur_ids);
+        $associate = array();
+
+        foreach ($joueur_ids as $joueur_id) {
+            if (!in_array($joueur_id, $current_ids)) {
+                array_push($associate, $joueur_id);
+            }
+        }
+        return ["associate" => $associate, "dissociate" => $dissociate];
+    }
 }

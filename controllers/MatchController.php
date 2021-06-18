@@ -42,4 +42,27 @@ class MatchController extends AbstractController
         $this->dao->store(false, $data);
         header('Location:/joueurs/index');
     }
+
+    public function edit($id)
+    {
+        var_dump($id);
+        $match = $this->dao->fetch($id);
+        $equipeDAO = new EquipeDAO();
+        $equipe1 = $equipeDAO->fetch($match->equipe1);
+        $equipe2 = $equipeDAO->fetch($match->equipe2);
+        $joueurDAO = new JoueurDAO();
+        $lineup1 = $joueurDAO->fetchWhere('equipe_id', $match->equipe1);
+        $lineup2 = $joueurDAO->fetchWhere('equipe_id', $match->equipe2);
+        include('../views/head.php');
+        include('../views/matchs/edit.php');
+        include('../views/foot.php');
+    }
+
+
+    public function update($id, $data)
+    {
+
+        $this->dao->update($id, $data);
+        header('Location:/joueurs/index');
+    }
 }

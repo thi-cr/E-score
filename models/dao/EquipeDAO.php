@@ -41,7 +41,6 @@ class EquipeDAO extends AbstractDAO
     }
 
 
-
     public function associate_joueurs($id, $joueur_ids)
     {
         foreach ($joueur_ids as $joueur) {
@@ -184,8 +183,6 @@ class EquipeDAO extends AbstractDAO
                 $EquipeDAO->dissociate_jeux($data['id'], $diff['dissociate']);
             }
         }
-
-
 
 
     }

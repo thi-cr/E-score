@@ -28,7 +28,8 @@ class MatchDAO extends AbstractDAO
         }
     }
 
-    public function remove_joueurs($id){
+    public function remove_joueurs($id)
+    {
         $this->remove('joueur_match', $id, 'match_id');
     }
 
@@ -96,7 +97,7 @@ class MatchDAO extends AbstractDAO
         } catch (PDOException $e) {
             print $e->getMessage();
         }
-        
+
     }
 
 
@@ -140,8 +141,8 @@ class MatchDAO extends AbstractDAO
         $match = $this->fetch($data['id']);
         $MatchDAO = new MatchDAO();
 
-        if (isset($data['lineup1'])) {
-            $diff = $match->has_joueurs($data['lineup1']);
+        if (isset($data['new_lineup1'])) {
+            $diff = $match->has_joueurs1($data['new_lineup1']);
 
             if ($diff['associate']) {
                 $MatchDAO->associate_joueurs($data['id'], $diff['associate'], $data['equipe1']);
@@ -152,8 +153,8 @@ class MatchDAO extends AbstractDAO
             }
         }
 
-        if (isset($data['lineup2'])) {
-            $diff = $match->has_joueurs($data['lineup2']);
+        if (isset($data['new_lineup2'])) {
+            $diff = $match->has_joueurs2($data['new_lineup2']);
 
             if ($diff['associate']) {
                 $MatchDAO->associate_joueurs($data['id'], $diff['associate'], $data['equipe2']);

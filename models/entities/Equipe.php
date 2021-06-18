@@ -47,11 +47,12 @@ class Equipe
         }
     }
 
-    public function has_joueur ($joueur_id) {
+    public function has_joueur($joueur_id)
+    {
         //detecter si dans $this->joueurs il y a un joueur avec cette id, si oui je vais return true sinon false
-        if($this->joueurs) {
-            foreach($this->joueurs as $joueur) {
-                if($joueur && $joueur->id && $joueur->id == $joueur_id) {
+        if ($this->joueurs) {
+            foreach ($this->joueurs as $joueur) {
+                if ($joueur && $joueur->id && $joueur->id == $joueur_id) {
                     return true;
                 }
             }
@@ -59,12 +60,13 @@ class Equipe
         return false;
     }
 
-    public function has_joueurs ($joueur_ids) {
+    public function has_joueurs($joueur_ids)
+    {
         $current_ids = $this->get_ids($this->joueurs);
         $dissociate = array_diff($current_ids, $joueur_ids);
         $associate = array();
 
-        foreach($joueur_ids as $joueur_id) {
+        foreach ($joueur_ids as $joueur_id) {
             if (!in_array($joueur_id, $current_ids)) {
                 array_push($associate, $joueur_id);
             }
@@ -73,10 +75,11 @@ class Equipe
     }
 
 
-    public function has_jeu ($jeu_id) {
-        if($this->jeux) {
-            foreach($this->jeux as $jeu) {
-                if($jeu && $jeu->id && $jeu->id == $jeu_id) {
+    public function has_jeu($jeu_id)
+    {
+        if ($this->jeux) {
+            foreach ($this->jeux as $jeu) {
+                if ($jeu && $jeu->id && $jeu->id == $jeu_id) {
                     return true;
                 }
             }
@@ -84,23 +87,19 @@ class Equipe
         return false;
     }
 
-    public function has_jeux ($jeu_ids) {
+    public function has_jeux($jeu_ids)
+    {
         $current_ids = $this->get_ids($this->jeux);
         $dissociate = array_diff($current_ids, $jeu_ids);
         $associate = array();
 
-        foreach($jeu_ids as $jeu_id) {
+        foreach ($jeu_ids as $jeu_id) {
             if (!in_array($jeu_id, $current_ids)) {
                 array_push($associate, $jeu_id);
             }
         }
         return ["associate" => $associate, "dissociate" => $dissociate];
     }
-
-
-
-
-
 
 
     public function get_ids($objs)
