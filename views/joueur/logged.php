@@ -41,11 +41,10 @@
                 <?php endif; ?>
             <?php endforeach; ?>
         </select>
+        <LABEL>jeux</LABEL>
         <select name="jeux[]" id="jeux" multiple>
             <?php foreach ($jeux as $jeu): ?>
-
-                <option name="jeu_id" value="<?= $jeu->id ?> "><?= $jeu->nom ?></option>
-
+                <option name="jeu_id" value="<?= $jeu->id ?>"><?= $jeu->nom ?></option>
             <?php endforeach; ?>
         </select>
         <input hidden type="number" name="capitaine_id" value="<?= $joueur->id ?>">

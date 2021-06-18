@@ -110,10 +110,12 @@ class EquipeDAO extends AbstractDAO
                 htmlspecialchars($data['capitaine_id'])
 
             ]);
+            $id = $this->connection->lastInsertId();
             if (isset($data['joueurs'])) {
-                $id = $this->connection->lastInsertId();
                 $EquipeDAO->associate_joueurs($id, $data['joueurs']);
-                return true;
+            }
+            if (isset($data['jeux'])) {
+                $EquipeDAO->associate_jeux($id, $data['jeux']);
             }
             return true;
         } catch (PDOException $e) {
