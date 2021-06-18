@@ -10,13 +10,17 @@ class JoueurController extends AbstractController
 
     public function index()
     {
+        $joueur = $this->isLogged();
         $EquipeDAO = new EquipeDAO();
         $equipes = $EquipeDAO->fetchAll();
+        if ($joueur->equipe){
+            $equipeJoueur = $EquipeDAO->fetch($joueur->equipe->id);
+        }
+        $joueurs = $this->dao->fetchAll();
         include('../views/head.php');
-        include('../views/joueur/login/loginForm.php');
+        include('../views/joueur/logged.php');
         include('../views/foot.php');
     }
-
 
     public function store($id, $data)
     {
@@ -25,7 +29,6 @@ class JoueurController extends AbstractController
 
     public function register($id, $data)
     {
-        var_dump("in register", $data);
         $this->store(false, $data);
         include('../views/head.php');
         include('../views/joueur/login/loginForm.php');
@@ -36,16 +39,7 @@ class JoueurController extends AbstractController
     {
         $joueur = $this->dao->verify($data);
         if ($joueur) {
-            $joueur = $this->dao->fetch($joueur->id);
-            $EquipeDAO = new EquipeDAO();
-            $equipes = $EquipeDAO->fetchAll();
-            if ($joueur->equipe){
-                $equipeJoueur = $EquipeDAO->fetch($joueur->equipe->id);
-            }
-            $joueurs = $this->dao->fetchAll();
-            include('../views/head.php');
-            include('../views/joueur/logged.php');
-            include('../views/foot.php');
+            header('Location:/joueurs/index');
         } else {
             echo "erreur au login";
         }
