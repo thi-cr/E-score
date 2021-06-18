@@ -12,7 +12,7 @@ class EquipeController extends AbstractController
         $equipes = $this->dao->fetchAll();
         include('../views/head.php');
         include('../views/equipes/list.php');
-        include('../views/foot.php');
+        //include('../views/foot.php');
     }
 
     public function edit($id)

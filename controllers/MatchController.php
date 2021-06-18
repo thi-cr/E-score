@@ -17,7 +17,7 @@ class MatchController extends AbstractController
         $equipes = $equipeDAO->fetchAll();
         include('../views/head.php');
         include('../views/matchs/list.php');
-        include('../views/foot.php');
+        //include('../views/foot.php');
     }
 
     public function add($id, $data)
