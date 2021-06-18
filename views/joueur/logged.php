@@ -93,8 +93,8 @@
             <tbody>
             <?php for ($i = 0; $i < count($match->lineup1) - 1; $i++): ?>
                 <tr>
-                    <?php if (isset($match->lineup1[$i])) { <td>$match->lineup1[$i]->pseudo</td> } ?><
-                    <td><?= $match->lineup2[$i]->pseudo ?></td>
+                    <td><?php if (isset($match->lineup1[$i])){echo $match->lineup1[$i]->pseudo;}?></td>
+                    <td><?php if (isset($match->lineup2[$i])){echo $match->lineup2[$i]->pseudo;}?></td>
                 </tr>
             <?php endfor; ?>
             </tbody>
