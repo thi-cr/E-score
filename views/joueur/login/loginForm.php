@@ -1,7 +1,10 @@
+<button id="equipes">Equipes</button>
+<button id="matchs">matchs</button>
 
-<a href="/equipes/index">equipes</a>
-<a href="/matchs/index">matchs</a>
-
+<section class="equipes">
+</section>
+<section class="matchs">
+</section>
 <h3>Connexion</h3>
 <form action="/joueurs/login" method="post">
     <label>Pseudo :</label>

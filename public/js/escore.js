@@ -1,17 +1,29 @@
 $(document).ready(function() {
     console.log('ready!');
-    $('button').on('click', function () {
-        $.get('../views/equipes/list.php', function (){
+    $('#equipes').on('click', function() {
+        $.get('/equipes/index', function() {
 
         })
         .done(function (result){
-            $('#response').html(result);
+            $('.equipes').html(result);
         })
 
         .fail(function(error) {
             console.log('error', error);
+        });
+    });
+
+    $('#matchs').on('click', function() {
+        $.get('/matchs/index', function() {
+
         })
+            .done(function (result){
+                $('.matchs').html(result);
+            })
 
-    })
+            .fail(function(error) {
+                console.log('error', error);
+            });
+    });
 
-})
+});
