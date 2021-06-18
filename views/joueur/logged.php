@@ -94,6 +94,9 @@
                     <th><?= $equipe->nom . ' ' . $match->ScoreEquipe2 ?></th>
                 <?php endif; ?>
             <?php endforeach; ?>
+            <?php foreach ($jeux as $jeu): ?>
+                <?php if ($jeu->id == $match->jeu){ echo '<th>'.$jeu->nom.'</th>'; }?>
+            <?php endforeach; ?>
             </thead>
             <tbody>
             <?php for ($i = 0; $i < count($match->lineup1); $i++): ?>
@@ -110,6 +113,10 @@
         </table>
         <?php if ($joueur->id == $equipeJoueur->capitaine_id): ?>
             <a href="/matchs/edit/<?= $match->id ?>">Modif</a>
+        <form action="/matchs/delete" method="post">
+            <input hidden type="number" name="id" value="<?= $match->id?>">
+            <input type="submit" value="Supprimer">
+        </form>
         <?php endif; ?>
     <?php endforeach; ?>
 </section>

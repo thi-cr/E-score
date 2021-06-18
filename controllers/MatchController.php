@@ -65,4 +65,10 @@ class MatchController extends AbstractController
         $this->dao->update($id, $data);
         header('Location:/joueurs/index');
     }
+
+    public function delete($id, $data)
+    {
+        $this->dao->delete($data);
+        header('Location:/joueurs/index');
+    }
 }
