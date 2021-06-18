@@ -49,7 +49,7 @@ class MatchController extends AbstractController
         $equipes = $equipeDAO->fetchAll();
         $equipeJoueur = $equipeDAO->fetch($data["equipe1"]);
         include('../views/head.php');
-        include('../views/joueur/logged.php');
+        header('Location:../views/joueur/logged.php');
         include('../views/foot.php');
     }
 }

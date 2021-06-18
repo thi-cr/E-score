@@ -11,6 +11,7 @@
     <input type="text" name="pseudo" required>
     <label>mot de passe :</label>
     <input type="password" name="password" required>
+    <input type="hidden" name="route" value="<?=$_SERVER['REQUEST_URI']; ?>">
     <input type="submit" value="s'identifier" name="submit">
 </form>
 
