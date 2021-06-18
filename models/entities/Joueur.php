@@ -10,6 +10,8 @@ class Joueur
     private $email;
     private $password;
     private $equipe;
+    private $session_token;
+    private $session_time;
 
     /**
      * joueur constructor.
@@ -21,7 +23,7 @@ class Joueur
      * @param $password
      * @param $equipe
      */
-    public function __construct($id, $nom, $prenom, $pseudo, $email, $password, $equipe = false)
+    public function __construct($id, $nom, $prenom, $pseudo, $email, $password, $equipe = false, $session_token = false, $session_time = false)
     {
         $this->id = $id;
         $this->nom = $nom;
@@ -30,6 +32,8 @@ class Joueur
         $this->email = $email;
         $this->password = $password;
         $this->equipe = $equipe;
+        $this->session_token = $session_token;
+        $this->session_time = $session_time;
     }
 
     public function __get($prop)

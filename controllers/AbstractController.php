@@ -4,23 +4,23 @@ abstract class AbstractController
 {
 
 
-/*    public function getJoueur() {
+    public function getJoueur() {
         if (!isset($_COOKIE['session_token'])) {
             var_dump('no cookie!');
             return false;
         }
         $joueurDAO = new JoueurDAO();
         return $joueurDAO->fetchBySession($_COOKIE['session_token']);
-    }*/
+    }
 
-/*    public function isLogged() {
+    public function isLogged() {
         $joueur = $this->getJoueur();
         if(!$joueur) {
             include('../views/joueur/login/loginForm.php');
             die;
         }
         return $joueur;
-    }*/
+    }
 
     public function create()
     {

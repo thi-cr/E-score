@@ -39,6 +39,8 @@ class JoueurController extends AbstractController
             $joueur = $this->dao->fetch($joueur->id);
             $EquipeDAO = new EquipeDAO();
             $equipes = $EquipeDAO->fetchAll();
+            $this->isLogged();
+
             if ($joueur->equipe){
                 $equipeJoueur = $EquipeDAO->fetch($joueur->equipe->id);
             }
