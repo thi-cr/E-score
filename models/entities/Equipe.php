@@ -74,9 +74,8 @@ class Equipe
 
 
     public function has_jeu ($jeu_id) {
-        //detecter si dans $this->joueurs il y a un joueur avec cette id, si oui je vais return true sinon false
         if($this->jeux) {
-            foreach($this->jeu as $jeu) {
+            foreach($this->jeux as $jeu) {
                 if($jeu && $jeu->id && $jeu->id == $jeu_id) {
                     return true;
                 }

@@ -41,6 +41,13 @@
                 <?php endif; ?>
             <?php endforeach; ?>
         </select>
+        <select name="jeux[]" id="jeux" multiple>
+            <?php foreach ($jeux as $jeu): ?>
+
+                <option name="jeu_id" value="<?= $jeu->id ?> "><?= $jeu->nom ?></option>
+
+            <?php endforeach; ?>
+        </select>
         <input hidden type="number" name="capitaine_id" value="<?= $joueur->id ?>">
         <input type="submit" value="Valider">
     </form>
@@ -90,10 +97,14 @@
             <?php endforeach; ?>
             </thead>
             <tbody>
-            <?php for ($i = 0; $i < count($match->lineup1) ; $i++): ?>
+            <?php for ($i = 0; $i < count($match->lineup1); $i++): ?>
                 <tr>
-                    <td><?php if (isset($match->lineup1[$i])){echo $match->lineup1[$i]->pseudo;}?></td>
-                    <td><?php if (isset($match->lineup2[$i])){echo $match->lineup2[$i]->pseudo;}?></td>
+                    <td><?php if (isset($match->lineup1[$i])) {
+                            echo $match->lineup1[$i]->pseudo;
+                        } ?></td>
+                    <td><?php if (isset($match->lineup2[$i])) {
+                            echo $match->lineup2[$i]->pseudo;
+                        } ?></td>
                 </tr>
             <?php endfor; ?>
             </tbody>
