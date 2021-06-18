@@ -1,6 +1,4 @@
 <?php if ($equipe): ?>
-    <?php var_dump($jeux); ?>
-
     <form action="/equipes/update" method="post">
         <input hidden type="number" name="capitaine_id" value="<?= $equipe->capitaine_id ?>">
         <input hidden type="number" name="id" value="<?= $equipe->id ?>">
@@ -15,7 +13,7 @@
         <select name="jeux[]" id="jeux" multiple>
             <?php foreach ($jeux as $jeu): ?>
 
-                <option name="jeu_id" value="<?= $jeu->id ?>"><?= $jeu->nom ?></option>
+                <option name="jeu_id" value="<?= $jeu->id ?>"  <?php if ($equipe->jeux && $equipe->has_jeu($jeu->id)){echo 'selected';} ?>><?= $jeu->nom ?></option>
 
             <?php endforeach; ?>
         </select>
