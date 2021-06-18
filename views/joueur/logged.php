@@ -1,12 +1,12 @@
-<h1>Bonjour <?= $joueur->pseudo?></h1>
-<?php var_dump($equipeJoueur->matchs[0]);?>
+<h1>Bonjour <?= $joueur->pseudo ?></h1>
+<?php var_dump($equipeJoueur->matchs); ?>
 <?php if ($joueur->id == $equipeJoueur->capitaine_id): ?>
     <h3>créer un match</h3>
     <form action="/matchs/add" method="post">
         <select name="equipe2" id="equipe2">
-            <?php foreach ($equipes as $equipe): ?>
-                <?php if ($equipe->id != $equipeJoueur->id): ?>
-                    <option type="number" name="equipe2_id" value="<?= $equipe->id ?>"><?= $equipe->nom ?></option>
+            <?php foreach ($equipes as $team): ?>
+                <?php if ($team->id != $equipeJoueur->id): ?>
+                    <option type="number" name="equipe2_id" value="<?= $team->id ?>"><?= $team->nom ?></option>
                 <?php endif; ?>
             <?php endforeach; ?>
         </select>
@@ -72,4 +72,35 @@
         <?php endif; ?>
         </table>
     </section>
+</section>
+
+<h3>Matchs</h3>
+<section id="matchs_list">
+    <?php foreach ($equipeJoueur->matchs as $match): ?>
+        <table>
+            <thead>
+            <?php foreach ($equipes as $equipe): ?>
+                <?php if ($equipe->id == $match->equipe1): ?>
+                    <th><?= $equipe->nom . ' ' . $match->ScoreEquipe1 ?></th>
+                <?php endif; ?>
+            <?php endforeach; ?>
+            <?php foreach ($equipes as $equipe): ?>
+                <?php if ($equipe->id == $match->equipe2): ?>
+                    <th><?= $equipe->nom . ' ' . $match->ScoreEquipe2 ?></th>
+                <?php endif; ?>
+            <?php endforeach; ?>
+            </thead>
+            <tbody>
+            <?php for ($i = 0; $i < count($match->lineup1) - 1; $i++): ?>
+                <tr>
+                    <?php if (isset($match->lineup1[$i])) { <td>$match->lineup1[$i]->pseudo</td> } ?><
+                    <td><?= $match->lineup2[$i]->pseudo ?></td>
+                </tr>
+            <?php endfor; ?>
+            </tbody>
+        </table>
+        <?php if ($joueur->id == $equipeJoueur->capitaine_id): ?>
+            <a href="/matchs/edit/<?= $equipeJoueur->id ?>">Modif</a>
+        <?php endif; ?>
+    <?php endforeach; ?>
 </section>

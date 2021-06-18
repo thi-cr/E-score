@@ -1,5 +1,5 @@
 <section>
-    <form action="/matchs/store">
+    <form action="/matchs/store" method="post">
         <input hidden type="number" name="equipe1" value="<?= $equipe1->id ?>">
         <input hidden type="number" name="equipe2" value="<?= $equipe2->id ?>">
         <label>Score <?= $equipe1->nom ?></label>

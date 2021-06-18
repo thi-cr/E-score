@@ -66,7 +66,7 @@ class MatchDAO extends AbstractDAO
 
     function store($id, $data)
     {
-        if (empty($data['equipe1']) || empty($data['equipe2']) || empty($data['ScoreEquipe1']) || empty($data['ScoreEquipe2']) || empty($data['jeu']) || empty($data['statut']) || empty($data['createur_id'])) {
+        if (empty($data['equipe1']) || empty($data['equipe2']) || empty($data['jeu']) || empty($data['statut']) || empty($data['createur_id'])) {
             return false;
         }
         $MatchDAO = new MatchDAO();
