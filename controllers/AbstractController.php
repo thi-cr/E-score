@@ -3,7 +3,8 @@
 abstract class AbstractController
 {
 
-
+    // pas de cookie --> return false
+    // si cookie récup le joueur avec ce cookie
     public function getJoueur() {
         if (!isset($_COOKIE['session_token'])) {
             var_dump('no cookie!');
