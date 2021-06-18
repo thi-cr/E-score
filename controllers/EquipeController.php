@@ -17,6 +17,7 @@ class EquipeController extends AbstractController
 
     public function edit($id)
     {
+        $this->isLogged();
         $equipe = $this->dao->fetch($id);
 
         $joueurDAO = new JoueurDAO();

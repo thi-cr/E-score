@@ -3,6 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>e-score</title>
-    <link href="../public/css/main.css" rel="stylesheet">
+<!--    <link href="../public/css/main.css" rel="stylesheet">-->
 </head>
 <body>

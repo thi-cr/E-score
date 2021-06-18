@@ -1,12 +1,17 @@
-/*
-$(document).ready(function () {
-    console.log('hahahahahahahahahahahahahaha')
-    $('body').on('submit','.deleteForm', function (event) {
-        event.preventDefault();
-        $.post($(this).attr('action'), {id: $(this).find('.deleteId').val()})
-            .done(function (resultat) {
-                console.log($(resultat))
-                $('.big-container').html($(resultat).html())
-            })
+$(document).ready(function() {
+    console.log('ready!');
+    $('button').on('click', function () {
+        $.get('../views/equipes/list.php', function (){
+
+        })
+        .done(function (result){
+            $('#response').html(result);
+        })
+
+        .fail(function(error) {
+            console.log('error', error);
+        })
+
     })
-})*/
+
+})
