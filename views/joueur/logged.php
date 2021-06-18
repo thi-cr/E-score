@@ -1,4 +1,5 @@
 <h1>Bonjour <?= $joueur->pseudo?></h1>
+<?php var_dump($equipeJoueur->matchs[0]);?>
 <?php if ($joueur->id == $equipeJoueur->capitaine_id): ?>
     <h3>créer un match</h3>
     <form action="/matchs/add" method="post">

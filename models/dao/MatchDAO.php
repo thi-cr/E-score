@@ -9,9 +9,9 @@ class MatchDAO extends AbstractDAO
         parent::__construct('matchs');
     }
 
-    public function joueurs($match_id)
+    public function joueurs($match_id, $equipe_id)
     {
-        return $this->belongsToMany(new JoueurDAO(), 'joueur_match', $match_id, 'match_id', 'joueur_id');
+        return $this->belongsToManyAnd(new JoueurDAO(), 'joueur_match', $match_id, 'match_id', 'equipe_id', $equipe_id, 'joueur_id');
     }
 
     public function associate_joueurs($id, $joueur_ids, $equipe_id)
@@ -58,7 +58,8 @@ class MatchDAO extends AbstractDAO
             $result["jeu_id"],
             $result["statut"],
             $result["createur_id"],
-            $this->joueurs($result["id"])
+            $this->joueurs($result["id"], $result['equipe1']),
+            $this->joueurs($result["id"], $result['equipe2'])
         );
     }
 

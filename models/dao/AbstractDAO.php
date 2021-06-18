@@ -73,6 +73,24 @@ abstract class AbstractDAO
         }
     }
 
+    public function fetchIntermediateAnd($table, $id, $key, $key2, $id2, $foreign)
+    {
+        try {
+            $statement = $this->connection->prepare("SELECT * FROM {$table} WHERE {$key} = ? AND {$key2} = ?");
+            $statement->execute([$id,
+                $id2]);
+            $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+            $list = [];
+            foreach ($result as $item) {
+                array_push($list, $this->fetch($item[$foreign], false));
+            }
+            return $list;
+        } catch (PDOException $e) {
+            print $e->getMessage();
+        }
+    }
+
 
     public function createAll($results)
     {
@@ -109,6 +127,11 @@ abstract class AbstractDAO
     public function belongsToMany($dao, $table, $id, $key, $foreign)
     {
         return $dao->fetchIntermediate($table, $id, $key, $foreign);
+    }
+
+    public function belongsToManyAnd($dao, $table, $id, $key, $key2, $id2, $foreign)
+    {
+        return $dao->fetchIntermediateAnd($table, $id, $key, $key2, $id2, $foreign);
     }
 
     public function associate($table, $id, $key, $ref, $value)

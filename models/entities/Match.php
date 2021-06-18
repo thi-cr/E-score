@@ -11,7 +11,6 @@ class Match
     private $jeu;
     private $statut;
     private $createur_id;
-    private $joueurs;
     private $lineup1;
     private $lineup2;
 
