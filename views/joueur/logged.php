@@ -1,5 +1,4 @@
 <h1>Bonjour <?= $joueur->pseudo ?></h1>
-<?php var_dump($equipeJoueur->matchs); ?>
 <?php if ($joueur->id == $equipeJoueur->capitaine_id): ?>
     <h3>créer un match</h3>
     <form action="/matchs/add" method="post">
@@ -91,7 +90,7 @@
             <?php endforeach; ?>
             </thead>
             <tbody>
-            <?php for ($i = 0; $i < count($match->lineup1) - 1; $i++): ?>
+            <?php for ($i = 0; $i < count($match->lineup1) ; $i++): ?>
                 <tr>
                     <td><?php if (isset($match->lineup1[$i])){echo $match->lineup1[$i]->pseudo;}?></td>
                     <td><?php if (isset($match->lineup2[$i])){echo $match->lineup2[$i]->pseudo;}?></td>

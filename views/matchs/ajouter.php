@@ -3,9 +3,9 @@
         <input hidden type="number" name="equipe1" value="<?= $equipe1->id ?>">
         <input hidden type="number" name="equipe2" value="<?= $equipe2->id ?>">
         <label>Score <?= $equipe1->nom ?></label>
-        <input type="number" name="ScoreEquipe1">
+        <input type="number" name="ScoreEquipe1" value="0" required>
         <br><label>Score <?= $equipe2->nom ?></label>
-        <input type="number" name="ScoreEquipe2">
+        <input type="number" name="ScoreEquipe2" value="0" required>
         <input hidden type="number" name="jeu" value="<?= $jeu->id ?>">
         <br><label>Statut</label>
         <select name="statut" required>
