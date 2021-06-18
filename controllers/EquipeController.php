@@ -34,16 +34,7 @@ class EquipeController extends AbstractController
     {
 
         $this->dao->update($id, $data);
-        $equipes = $this->dao->fetchAll();
-        $joueurDAO = new JoueurDAO();
-        $joueur = $joueurDAO->fetch($data['capitaine_id']);
-        $joueurs = $joueurDAO->fetchAll();
-
-        $equipeJoueur = $this->dao->fetch($joueur->equipe->id);
-
-        include('../views/head.php');
-        include('../views/joueur/logged.php');
-        include('../views/foot.php');
+        header('Location:/joueurs/index');
     }
 
 
