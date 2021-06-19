@@ -62,3 +62,18 @@ input, select {
     padding: 4px;
     color: #3c87a5;
 }
+
+thead{
+    background: #6c757d;
+    border: 1px solid black;
+    color: white;
+
+}
+tbody{
+    border: 1px dashed black;
+}
+
+th{
+    padding-right: 3em;
+
+}
