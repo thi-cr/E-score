@@ -1,4 +1,5 @@
 <section class="big-container">
+    <h3>Liste matchs</h3>
     <section id="erreur">
         <?php if (isset($error)) {
             echo $error;

@@ -3,13 +3,9 @@ h3{
     font-family: Arial;
 }
 
-
 html{
     padding-left: 20px;
-
-
 }
-
 
 .formLogin {
     display: block;
@@ -27,6 +23,7 @@ html{
     box-shadow: 0 0 50px rgba(255, 255, 255, 0.2);
 
 }
+
 .loginButton{
     display: block;
     width: 40%;
@@ -53,7 +50,6 @@ html{
     padding-bottom: 2em;
 }
 
-
 input, select {
     border: none;
     /* -- */
@@ -69,6 +65,7 @@ thead{
     color: white;
 
 }
+
 tbody{
     border: 1px dashed black;
 }
