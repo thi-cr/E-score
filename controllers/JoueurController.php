@@ -31,7 +31,7 @@ class JoueurController extends AbstractController
 
     public function register($id, $data)
     {
-        $this->store(false, $data);
+        $error = $this->store(false, $data);
         include('../views/head.php');
         include('../views/joueur/login/loginForm.php');
         include('../views/foot.php');

@@ -106,7 +106,9 @@ class JoueurDAO extends AbstractDAO
             ]);
             return true;
         } catch (PDOException $e) {
-            print $e->getMessage();
+            //print $e->getMessage();
+            $msg = 'Pseudo ou email deja utilisé';
+            print $msg;
         }
     }
     // vérifie si user en db ? si oui il le renvoie et on check le mdp
