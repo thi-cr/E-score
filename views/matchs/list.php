@@ -25,6 +25,16 @@
                             <td><?= $match->ScoreEquipe1 ?></td>
                             <td><?= $match->ScoreEquipe2 ?></td>
                         </tr>
+                        <?php for ($i = 0; $i < count($match->lineup1); $i++): ?>
+                            <tr>
+                                <td><?php if (isset($match->lineup1[$i])) {
+                                        echo $match->lineup1[$i]->pseudo;
+                                    } ?></td>
+                                <td><?php if (isset($match->lineup2[$i])) {
+                                        echo $match->lineup2[$i]->pseudo;
+                                    } ?></td>
+                            </tr>
+                        <?php endfor; ?>
                         </tbody>
                     </table>
                 <?php endforeach; ?>
