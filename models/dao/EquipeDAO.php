@@ -55,10 +55,6 @@ class EquipeDAO extends AbstractDAO
         }
     }
 
-    public function remove_joueurs($id)
-    {
-        $this->remove('joueurs', $id, 'equipe_id');
-    }
 
     public function create($result)
     {
@@ -122,22 +118,6 @@ class EquipeDAO extends AbstractDAO
         }
 
 
-    }
-
-    function delete($data)
-    {
-        if (empty($data['id'])) {
-            return false;
-        }
-
-        try {
-            $statement = $this->connection->prepare("DELETE FROM {$this->table} WHERE id = ?");
-            $statement->execute([
-                $data['id']
-            ]);
-        } catch (PDOException $e) {
-            return $e->getMessage();
-        }
     }
 
 

@@ -28,11 +28,6 @@ class MatchDAO extends AbstractDAO
         }
     }
 
-    public function remove_joueurs($id)
-    {
-        $this->remove('joueur_match', $id, 'match_id');
-    }
-
 
     public function create($result)
     {

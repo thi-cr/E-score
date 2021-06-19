@@ -1,4 +1,5 @@
 <section>
+    <h3>Ajouter un match</h3>
     <form action="/matchs/store" method="post">
         <input hidden type="number" name="equipe1" value="<?= $equipe1->id ?>">
         <input hidden type="number" name="equipe2" value="<?= $equipe2->id ?>">

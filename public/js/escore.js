@@ -26,11 +26,9 @@ $(document).ready(function() {
     });
 
     $('body').on('submit','#inscription', function (event) {
-        //event.preventDefault();
         $.post($(this).attr('action'))
             .done(function (resultat) {
                 console.log($(resultat))
-                //$('.big-container').html($(resultat).html())
             })
     })
 

@@ -39,40 +39,6 @@ class JoueurDAO extends AbstractDAO
         );
     }
 
-    function delete($data)
-    {
-        if (empty($data['id'])) {
-            return false;
-        }
-
-        try {
-            $statement = $this->connection->prepare("DELETE FROM {$this->table} WHERE id = ?");
-            $statement->execute([
-                $data['id']
-            ]);
-        } catch (PDOException $e) {
-            return $e->getMessage();
-        }
-    }
-
-    public function update($id, $data)
-    {
-        try {
-            $statement = $this->connection->prepare("UPDATE {$this->table} SET nom = ?, prenom = ?, password = ?, pseudo = ?, email = ? WHERE id = ?");
-            $statement->execute(
-                [
-                    htmlspecialchars($data['nom']),
-                    htmlspecialchars($data['prenom']),
-                    htmlspecialchars($data['password']),
-                    htmlspecialchars($data['pseudo']),
-                    htmlspecialchars($data['email']),
-                    htmlspecialchars($data['id'])
-                ]
-            );
-        } catch (PDOException $e) {
-            print $e->getMessage();
-        }
-    }
 
     function store($id, $data)
     {

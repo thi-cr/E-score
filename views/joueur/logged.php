@@ -71,7 +71,7 @@
         </table>
         </tbody>
         <?php if ($joueur->id == $equipeJoueur->capitaine_id): ?>
-            <a class="btn btn-secondary btn-xl js-scroll-trigger" href="/equipes/edit/<?= $equipeJoueur->id ?>">Modif</a>
+            <a class="btn btn-secondary btn-xl js-scroll-trigger" href="/equipes/edit/<?= $equipeJoueur->id ?>">Modifier</a>
         <?php endif; ?>
         </table>
     </section>
@@ -111,7 +111,7 @@
         </table>
         <br>statut: <?= $match->statut?>
         <?php if ($joueur->id == $equipeJoueur->capitaine_id): ?>
-            <BR><a class="btn btn-secondary btn-xl js-scroll-trigger" href="/matchs/edit/<?= $match->id ?>">Modif</a>
+            <BR><a class="btn btn-secondary btn-xl js-scroll-trigger" href="/matchs/edit/<?= $match->id ?>">Modifier</a>
         <form action="/matchs/delete" method="post">
             <input hidden type="number" name="id" value="<?= $match->id?>">
             <input class="btn btn-danger btn-xl js-scroll-trigger" type="submit" value="Supprimer">
