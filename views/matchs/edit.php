@@ -1,4 +1,6 @@
 <form action="/matchs/update" method="post">
+    <h3>Modification match</h3>
+
     <label>Jeu</label>
     <select name="jeu" id="jeu">
         <?php foreach ($equipe1->jeux as $jeu): ?>
@@ -38,5 +40,5 @@
     <input type="number" name="equipe2" value="<?= $match->equipe2 ?>" hidden>
     <input type="number" name="id" value="<?= $match->id ?>" hidden>
     <input type="number" name="createur_id" value="<?= $match->createur_id ?>" hidden>
-    <input type="submit" value="Valider">
+    <input class="btn btn-secondary btn-xl js-scroll-trigger" type="submit" value="Valider">
 </form>

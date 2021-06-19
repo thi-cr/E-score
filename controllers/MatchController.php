@@ -45,7 +45,6 @@ class MatchController extends AbstractController
 
     public function edit($id)
     {
-        var_dump($id);
         $match = $this->dao->fetch($id);
         $equipeDAO = new EquipeDAO();
         $equipe1 = $equipeDAO->fetch($match->equipe1);

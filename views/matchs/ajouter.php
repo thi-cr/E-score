@@ -25,7 +25,7 @@
                 <option name="joueur2_id" value="<?= $joueur->id ?>"><?= $joueur->pseudo ?></option>
             <?php endforeach; ?>
         </select>
-        <input type="submit" value="créer le match">
+        <input class="btn btn-secondary btn-xl js-scroll-trigger" type="submit" value="créer le match">
     </form>
 </section>
 

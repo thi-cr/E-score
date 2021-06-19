@@ -1,6 +1,6 @@
 <h1>Bonjour <?= $joueur->pseudo ?></h1>
 <?php if ($joueur->id == $equipeJoueur->capitaine_id): ?>
-    <h3>créer un match</h3>
+    <h3>Créer un match</h3>
     <form action="/matchs/add" method="post">
         <select name="equipe2" id="equipe2">
             <?php foreach ($equipes as $team): ?>
@@ -18,7 +18,7 @@
         </select>
         <input hidden type="number" name="equipe1" value="<?= $joueur->equipe->id ?>">
         <input hidden type="number" name="createur" value="<?= $joueur->id ?>">
-        <input type="submit" value="Créer un match contre l'equipe sélectionnée">
+        <input class="btn btn-secondary btn-xl js-scroll-trigger" type="submit" value="Créer un match contre l'equipe sélectionnée">
     </form>
 <?php endif; ?>
 
@@ -46,7 +46,7 @@
             <?php endforeach; ?>
         </select>
         <input hidden type="number" name="capitaine_id" value="<?= $joueur->id ?>">
-        <input type="submit" value="Valider">
+        <input class="btn btn-secondary btn-xl js-scroll-trigger" type="submit" value="Valider">
     </form>
 
 <?php endif; ?>
@@ -71,7 +71,7 @@
         </table>
         </tbody>
         <?php if ($joueur->id == $equipeJoueur->capitaine_id): ?>
-            <a href="/equipes/edit/<?= $equipeJoueur->id ?>">Modif</a>
+            <a class="btn btn-secondary btn-xl js-scroll-trigger" href="/equipes/edit/<?= $equipeJoueur->id ?>">Modif</a>
         <?php endif; ?>
         </table>
     </section>
@@ -111,10 +111,10 @@
         </table>
         <br>statut: <?= $match->statut?>
         <?php if ($joueur->id == $equipeJoueur->capitaine_id): ?>
-            <BR><a href="/matchs/edit/<?= $match->id ?>">Modif</a>
+            <BR><a class="btn btn-secondary btn-xl js-scroll-trigger" href="/matchs/edit/<?= $match->id ?>">Modif</a>
         <form action="/matchs/delete" method="post">
             <input hidden type="number" name="id" value="<?= $match->id?>">
-            <input type="submit" value="Supprimer">
+            <input class="btn btn-danger btn-xl js-scroll-trigger" type="submit" value="Supprimer">
         </form>
         <?php endif; ?>
     <?php endforeach; ?>

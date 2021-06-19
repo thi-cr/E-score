@@ -1,4 +1,6 @@
 <?php if ($equipe): ?>
+
+    <h3>Modification equipe</h3>
     <form action="/equipes/update" method="post">
         <input hidden type="number" name="capitaine_id" value="<?= $equipe->capitaine_id ?>">
         <input hidden type="number" name="id" value="<?= $equipe->id ?>">
@@ -33,7 +35,7 @@
                 <?php endif; ?>
             <?php endforeach; ?>
         </select>
-        <input type="submit" value="Valider">
+        <input class="btn btn-secondary btn-xl js-scroll-trigger" type="submit" value="Valider">
     </form>
 
 <?php endif; ?>
