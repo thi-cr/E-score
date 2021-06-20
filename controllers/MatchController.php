@@ -46,15 +46,20 @@ class MatchController extends AbstractController
     public function edit($id)
     {
         $match = $this->dao->fetch($id);
-        $equipeDAO = new EquipeDAO();
-        $equipe1 = $equipeDAO->fetch($match->equipe1);
-        $equipe2 = $equipeDAO->fetch($match->equipe2);
-        $joueurDAO = new JoueurDAO();
-        $lineup1 = $joueurDAO->fetchWhere('equipe_id', $match->equipe1);
-        $lineup2 = $joueurDAO->fetchWhere('equipe_id', $match->equipe2);
-        include('../views/head.php');
-        include('../views/matchs/edit.php');
-        include('../views/foot.php');
+        if ($match) {
+            $equipeDAO = new EquipeDAO();
+            $equipe1 = $equipeDAO->fetch($match->equipe1);
+            $equipe2 = $equipeDAO->fetch($match->equipe2);
+            $joueurDAO = new JoueurDAO();
+            $lineup1 = $joueurDAO->fetchWhere('equipe_id', $match->equipe1);
+            $lineup2 = $joueurDAO->fetchWhere('equipe_id', $match->equipe2);
+            include('../views/head.php');
+            include('../views/matchs/edit.php');
+            include('../views/foot.php');
+        }
+        else{
+            echo 'Match introuvable';
+        }
     }
 
 

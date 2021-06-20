@@ -3,7 +3,8 @@
 
 class EquipeController extends AbstractController
 {
-    public function __construct(){
+    public function __construct()
+    {
         $this->dao = new EquipeDAO();
     }
 
@@ -18,15 +19,19 @@ class EquipeController extends AbstractController
     {
         $this->isLogged();
         $equipe = $this->dao->fetch($id);
+        if ($equipe) {
+            $joueurDAO = new JoueurDAO();
+            $joueurs = $joueurDAO->fetchAll();
+            $jeuDAO = new JeuDAO();
+            $jeux = $jeuDAO->fetchAll();
 
-        $joueurDAO = new JoueurDAO();
-        $joueurs = $joueurDAO->fetchAll();
-        $jeuDAO = new JeuDAO();
-        $jeux = $jeuDAO->fetchAll();
-
-        include('../views/head.php');
-        include('../views/equipes/edit.php');
-        include('../views/foot.php');
+            include('../views/head.php');
+            include('../views/equipes/edit.php');
+            include('../views/foot.php');
+        }
+        else{
+            echo 'equipe introuvable';
+        }
     }
 
     public function update($id, $data)
@@ -37,7 +42,8 @@ class EquipeController extends AbstractController
     }
 
 
-    public function store($id, $data){
+    public function store($id, $data)
+    {
         $this->dao->store($id, $data);
         header('Location:/joueurs/index');
     }
