@@ -19,19 +19,15 @@ class EquipeController extends AbstractController
     {
         $this->isLogged();
         $equipe = $this->dao->fetch($id);
-        if ($equipe) {
-            $joueurDAO = new JoueurDAO();
-            $joueurs = $joueurDAO->fetchAll();
-            $jeuDAO = new JeuDAO();
-            $jeux = $jeuDAO->fetchAll();
 
-            include('../views/head.php');
-            include('../views/equipes/edit.php');
-            include('../views/foot.php');
-        }
-        else{
-            echo 'equipe introuvable';
-        }
+        $joueurDAO = new JoueurDAO();
+        $joueurs = $joueurDAO->fetchAll();
+        $jeuDAO = new JeuDAO();
+        $jeux = $jeuDAO->fetchAll();
+
+        include('../views/head.php');
+        include('../views/equipes/edit.php');
+        include('../views/foot.php');
     }
 
     public function update($id, $data)
